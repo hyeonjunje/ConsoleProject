@@ -14,8 +14,13 @@ namespace ConsoleProject
         public int level;
         public bool isRight = true;
 
-        public List<AttackSkill> attackSKill = new List<AttackSkill>();
-        public List<int> attackSkillCount = new List<int>();
+        public List<AttackMeleeSkill> attackMeleeSkill = new List<AttackMeleeSkill>();
+        public List<AttackLongLangeSkill> attackLongLangeSkill = new List<AttackLongLangeSkill>();
+
+        public List<int> attackMeleeSkillCount = new List<int>();
+        public List<int> attackLongLangeSkillCount = new List<int>();
+
+        //public Fireball fireBall = new Fireball(3, 30, );
 
         public Player()
         {
@@ -31,9 +36,10 @@ namespace ConsoleProject
 
             CurrentHp = maxHp;
 
-            //AddSkill(new Whip(3, 20, 10, '~', ConsoleColor.Magenta));
-            //AddSkill(new Rasor(5, 40, 20, '=', ConsoleColor.Blue));
-            //AddSkill(new Galic(1, 1, 1, '＠', ConsoleColor.Yellow));
+            AddSkill(new Whip(3, 20, 1, '∫', ConsoleColor.Magenta));
+            AddSkill(new Rasor(5, 40, 1, '=', ConsoleColor.Blue));
+            // AddSkill(new Galic(1, 10, 1, '＠', ConsoleColor.Yellow));
+            AddSkill(new Fireball(3, 30, 30, '＠', ConsoleColor.DarkRed));
         }
 
         [DllImport("user32.dll")]
@@ -44,51 +50,52 @@ namespace ConsoleProject
         {
             if (GetAsyncKeyState((int)ConsoleKey.W) != 0)
             {
-                PosY-=2;
+                PosY--;
             }
             if (GetAsyncKeyState((int)ConsoleKey.A) != 0)
             {
                 isRight = false;
-                PosX-=2;
+                PosX--;
             }
             if (GetAsyncKeyState((int)ConsoleKey.S) != 0)
             {
-                PosY+=2;
+                PosY++;
             }
             if (GetAsyncKeyState((int)ConsoleKey.D) != 0)
             {
                 isRight = true;
-                PosX+=2;
+                PosX++;
             }
         }
 
         public void Attack()
         {
-            for(int i = 0; i < attackSkillCount.Count; i++)
+            // 근거리
+            for(int i = 0; i < attackMeleeSkillCount.Count; i++)
             {
-                attackSkillCount[i]++;
+                attackMeleeSkillCount[i]++;
             }
 
-            for(int i = 0; i < attackSKill.Count; i++)
+            for(int i = 0; i < attackMeleeSkill.Count; i++)
             {
                 // 사용중인 스킬이 아니고 스킬을 사용할 수 있을 때 사용
-                if(!attackSKill[i].isUsing && attackSkillCount[i] >= attackSKill[i].skillCount)
+                if(!attackMeleeSkill[i].isUsing && attackMeleeSkillCount[i] >= attackMeleeSkill[i].skillCount)
                 {
-                    attackSkillCount[i] = 0;
+                    attackMeleeSkillCount[i] = 0;
 
                     // 범위 설정
-                    attackSKill[i].SetRange();
+                    attackMeleeSkill[i].SetRange();
 
                     // 스킬 사용
-                    attackSKill[i].Use();
+                    attackMeleeSkill[i].Use();
 
                     // 스킬 시각화
-                    attackSKill[i].Show();
+                    attackMeleeSkill[i].Show();
                 }
                 // 스킬이 사용중이며 스킬 지속 시간이 끝날 때
-                if (attackSKill[i].isUsing && attackSkillCount[i] >= attackSKill[i].skillDuration)
+                if (attackMeleeSkill[i].isUsing && attackMeleeSkillCount[i] >= attackMeleeSkill[i].skillDuration)
                 {
-                    attackSKill[i].UnShow();
+                    attackMeleeSkill[i].UnShow();
                 }
             }
         }
@@ -99,18 +106,33 @@ namespace ConsoleProject
         }
 
         // 스킬 추가
-        public void AddSkill(AttackSkill skill)
+        public void AddSkill(AttackMeleeSkill skill)
         {
             // 만약 있는 스킬이라면
-            if(attackSKill.Contains(skill))
+            if(attackMeleeSkill.Contains(skill))
             {
 
             }
             // 없으면
             else
             {
-                attackSKill.Add(skill);
-                attackSkillCount.Add(0);
+                attackMeleeSkill.Add(skill);
+                attackMeleeSkillCount.Add(0);
+            }
+        }
+
+        public void AddSkill(AttackLongLangeSkill skill)
+        {
+            // 만약 있는 스킬이라면
+            if (attackLongLangeSkill.Contains(skill))
+            {
+
+            }
+            // 없으면
+            else
+            {
+                attackLongLangeSkill.Add(skill);
+                attackLongLangeSkillCount.Add(0);
             }
         }
 

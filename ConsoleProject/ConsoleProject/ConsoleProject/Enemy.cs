@@ -81,7 +81,6 @@ namespace ConsoleProject
             if (Game.Instance.map[PosY, PosX] >= (int)EUnit.Galic && Game.Instance.map[PosY, PosX] < (int)EUnit.Player)
             {
                 CurrentHp = 0;
-                // CurrentHp--;
             }
         }
     }

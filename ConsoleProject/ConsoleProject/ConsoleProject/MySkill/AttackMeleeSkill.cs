@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleProject.MySkill
 {
-    abstract class AttackSkill : Skill
+    abstract class AttackMeleeSkill : Skill
     {
         public int damage;
         public int skillCount;
@@ -19,7 +19,7 @@ namespace ConsoleProject.MySkill
 
         protected List<Utility.Pair<int, int>> range;
 
-        public AttackSkill(int damage, int skillCount, int skillDuration, ConsoleColor entityColor)
+        public AttackMeleeSkill(int damage, int skillCount, int skillDuration, ConsoleColor entityColor)
         {
             this.damage = damage;
             this.skillCount = skillCount;

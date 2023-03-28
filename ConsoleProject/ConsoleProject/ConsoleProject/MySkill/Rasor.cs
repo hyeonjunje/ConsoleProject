@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace ConsoleProject.MySkill
 {
-    class Rasor : AttackSkill
+    class Rasor : AttackMeleeSkill
     {
         public Rasor(int damage, int skillCount, int skillDuration, char entity, ConsoleColor entityColor) : base(damage, skillCount, skillDuration, entityColor)
         {
             _entity = entity;
+
+            _unit = EUnit.Rasor;
         }
 
         public override void SetRange()

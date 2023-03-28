@@ -46,13 +46,15 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="MySkill\AttackLongLangeSkill.cs" />
+    <Compile Include="MySkill\Fireball.cs" />
     <Compile Include="MySkill\Galic.cs" />
     <Compile Include="MySkill\Rasor.cs" />
     <Compile Include="MyUtility.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MySkill\AttackSkill.cs" />
+    <Compile Include="MySkill\AttackMeleeSkill.cs" />
     <Compile Include="MySkill\Skill.cs" />
     <Compile Include="MySkill\Whip.cs" />
   </ItemGroup>

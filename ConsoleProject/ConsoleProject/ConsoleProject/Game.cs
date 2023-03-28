@@ -13,6 +13,7 @@ namespace ConsoleProject
         Galic,   // 1
         Whip,    // 2
         Rasor,   // 3
+        Fireball,
         Player,  // 4
         Enemy,   // 5
     }
@@ -76,8 +77,6 @@ namespace ConsoleProject
             while(true)
             {
                 // map초기화
-                map = new int[Console.WindowHeight, Console.WindowWidth];
-
                 ShowUI();
 
                 // 일정시간마다 적 랜덤 생성
@@ -124,45 +123,8 @@ namespace ConsoleProject
                 }
                 enemies = temp;
 
-                //ShowMap();
-
                 // 30프레임
                 Thread.Sleep(33);
-            }
-        }
-
-        private void ShowMap()
-        {
-            for(int i = 1; i < map.GetLength(0); i++)
-            {
-                for(int j = 0; j < map.GetLength(1); j++)
-                {
-                    int data = map[i, j];
-                    Console.SetCursorPosition(j, i);
-                    Console.BackgroundColor = ConsoleColor.DarkGreen;
-                    switch (data)
-                    {
-                        case 0:
-                            Console.Write(' ');
-                            break;
-                        case 1:
-                            Console.Write('@');
-                            break;
-                        case 2:
-                            Console.Write('~');
-                            break;
-                        case 3:
-                            Console.Write('=');
-                            break;
-                        case 4:
-                            Console.Write('■');
-                            break;
-                        case 5:
-                            Console.Write('■');
-                            break;
-                    }
-
-                }
             }
         }
 
