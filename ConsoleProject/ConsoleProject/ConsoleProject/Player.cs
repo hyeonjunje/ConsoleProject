@@ -30,9 +30,9 @@ namespace ConsoleProject
 
             CurrentHp = maxHp;
 
-            AddSkill(new Whip('∫', "채찍", 5, 20, 20, ConsoleColor.Magenta));
+            /*AddSkill(new Whip('∫', "채찍", 5, 20, 20, ConsoleColor.Magenta));
             AddSkill(new Rasor('=', "레이저", 1, 50, 20, ConsoleColor.Blue));
-            AddSkill(new Fireball('@', "파이어볼", 3, 30, 100, ConsoleColor.DarkRed));
+            AddSkill(new Fireball('@', "파이어볼", 3, 30, 100, ConsoleColor.DarkRed));*/
             // AddSkill(new Galic(1, 1, 100, '＠', ConsoleColor.Yellow));
         }
 

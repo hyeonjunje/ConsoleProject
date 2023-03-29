@@ -83,6 +83,8 @@ namespace ConsoleProject
             _player = new Player();
 
             abilityManager = new AbilityManager();
+
+            _player.AddSkill((MySkill.ActiveSkill)abilityManager.allSkills[0]);
         }
 
         public void StartGame()

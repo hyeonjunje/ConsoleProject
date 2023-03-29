@@ -16,7 +16,7 @@ namespace ConsoleProject
 
         private const int PaddingX = 5;
 
-        private List<Skill> allSkills;
+        public List<Skill> allSkills;
 
         private Skill[] selectedSkills = new Skill[3];
 
@@ -166,6 +166,7 @@ namespace ConsoleProject
             if(cki.Key == ConsoleKey.Spacebar)
             {
                 // 선택
+                Game.Instance.Player.AddSkill((ActiveSkill)allSkills[SelectedNumber]);
                 return false;
             }
 

@@ -8,13 +8,16 @@ namespace ConsoleProject.MySkill
 {
     class Rasor : MeleeAttackSkill
     {
+        int width = 0;
+
         public Rasor(char shape, string name, int damage, int skillCount, int skillDuration, ConsoleColor entityColor) : base(shape, name, damage, skillCount, skillDuration, entityColor)
         {
+            width = 0;
         }
 
         public override void LevelUp()
         {
-            throw new NotImplementedException();
+            width++;
         }
 
         public override void SetRange()
@@ -27,7 +30,7 @@ namespace ConsoleProject.MySkill
 
             if(Game.Instance.Player.isRight)
             {
-                for(int i = offsetY - 1; i < offsetY + 2; i++)
+                for(int i = offsetY - width; i <= offsetY + width; i++)
                 {
                     for(int j = offsetX + 1; j <= offsetX + 100; j++)
                     {
@@ -40,7 +43,7 @@ namespace ConsoleProject.MySkill
             }
             else
             {
-                for (int i = offsetY - 1; i < offsetY + 2; i++)
+                for (int i = offsetY - width; i <= offsetY + width; i++)
                 {
                     for (int j = offsetX - 1; j >= offsetX - 100; j--)
                     {
