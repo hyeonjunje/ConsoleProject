@@ -14,7 +14,6 @@ namespace ConsoleProject.MySkill
         public bool isUsing;
 
         protected char _entity;
-        protected EUnit _unit;
         protected ConsoleColor _entityColor;
 
         protected List<Utility.Pair<int, int>> range;
@@ -38,6 +37,8 @@ namespace ConsoleProject.MySkill
             {
                 Console.SetCursorPosition(range[i].first, range[i].second);
                 Console.Write(_entity);
+                Game.Instance.charMap[range[i].second, range[i].first] = _entity;
+                Game.Instance.attackMap[range[i].second, range[i].first] = damage;
             }
             Console.ResetColor();
         }
@@ -51,9 +52,8 @@ namespace ConsoleProject.MySkill
             {
                 Console.SetCursorPosition(range[i].first, range[i].second);
                 Console.Write(' ');
-
-                if (Game.Instance.map[range[i].second, range[i].first] == (int)_unit)
-                    Game.Instance.map[range[i].second, range[i].first] = (int)EUnit.None;
+                Game.Instance.charMap[range[i].second, range[i].first] = ' ';
+                Game.Instance.attackMap[range[i].second, range[i].first] = 0;
             }
             Console.ResetColor();
         }
@@ -61,11 +61,6 @@ namespace ConsoleProject.MySkill
         public virtual void Use()
         {
             isUsing = true;
-
-            for (int i = 0; i < range.Count; i++)
-            {
-                Game.Instance.map[range[i].second, range[i].first] = (int)_unit;
-            }
         }
 
         public abstract void SetRange();

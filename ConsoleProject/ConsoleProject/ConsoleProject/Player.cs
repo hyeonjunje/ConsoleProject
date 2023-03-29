@@ -15,7 +15,6 @@ namespace ConsoleProject
         public bool isRight = true;
 
         public List<AttackSkill> attackSKill = new List<AttackSkill>();
-        public List<int> attackSkillCount = new List<int>();
 
         public Player()
         {
@@ -31,8 +30,8 @@ namespace ConsoleProject
 
             CurrentHp = maxHp;
 
-            AddSkill(new Whip(3, 20, 1, '∫', ConsoleColor.Magenta));
-            AddSkill(new Rasor(5, 50, 1, '=', ConsoleColor.Blue));
+            AddSkill(new Whip(5, 20, 20, '∫', ConsoleColor.Magenta));
+            AddSkill(new Rasor(1, 50, 20, '=', ConsoleColor.Blue));
             //AddSkill(new Galic(1, 1, 1, '＠', ConsoleColor.Yellow));
         }
 
@@ -44,38 +43,31 @@ namespace ConsoleProject
         {
             if (GetAsyncKeyState((int)ConsoleKey.W) != 0)
             {
-                PosY-=2;
+                PosY--;
             }
             if (GetAsyncKeyState((int)ConsoleKey.A) != 0)
             {
                 isRight = false;
-                PosX-=2;
+                PosX--;
             }
             if (GetAsyncKeyState((int)ConsoleKey.S) != 0)
             {
-                PosY+=2;
+                PosY++;
             }
             if (GetAsyncKeyState((int)ConsoleKey.D) != 0)
             {
                 isRight = true;
-                PosX+=2;
+                PosX++;
             }
         }
 
-        public void Attack()
+        public void Attack(int count)
         {
-            for(int i = 0; i < attackSkillCount.Count; i++)
-            {
-                attackSkillCount[i]++;
-            }
-
             for(int i = 0; i < attackSKill.Count; i++)
             {
                 // 사용중인 스킬이 아니고 스킬을 사용할 수 있을 때 사용
-                if(!attackSKill[i].isUsing && attackSkillCount[i] >= attackSKill[i].skillCount)
+                if(!attackSKill[i].isUsing && count % attackSKill[i].skillCount == 0)
                 {
-                    attackSkillCount[i] = 0;
-
                     // 범위 설정
                     attackSKill[i].SetRange();
 
@@ -86,7 +78,7 @@ namespace ConsoleProject
                     attackSKill[i].Show();
                 }
                 // 스킬이 사용중이며 스킬 지속 시간이 끝날 때
-                if (attackSKill[i].isUsing && attackSkillCount[i] >= attackSKill[i].skillDuration)
+                else if (attackSKill[i].isUsing && count % attackSKill[i].skillDuration == 0)
                 {
                     attackSKill[i].UnShow();
                 }
@@ -110,7 +102,6 @@ namespace ConsoleProject
             else
             {
                 attackSKill.Add(skill);
-                attackSkillCount.Add(0);
             }
         }
 
@@ -120,6 +111,14 @@ namespace ConsoleProject
             {
                 CurrentHp--;
             }
+        }
+
+        public override void Update(int count)
+        {
+            ShowEntity();
+
+            Attack(count);
+
         }
     }
 }

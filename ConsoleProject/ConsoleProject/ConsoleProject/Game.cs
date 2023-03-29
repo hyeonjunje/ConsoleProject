@@ -10,12 +10,10 @@ namespace ConsoleProject
     {
         // 렌더링되는 순서
         None,    // 0
-        Galic,   // 1
-        Whip,    // 2
-        Rasor,   // 3
-        Player,  // 4
-        Enemy,   // 5
+        Player,  // 1
+        Enemy,   // 2
     }
+
     class Game
     {
         #region 싱글톤
@@ -38,7 +36,14 @@ namespace ConsoleProject
 
         public List<Enemy> enemies = new List<Enemy>();
 
+        // 나와 적
         public int[,] map = new int[Console.WindowHeight, Console.WindowWidth];
+
+        // 스킬 데미지
+        public int[,] attackMap = new int[Console.WindowHeight, Console.WindowWidth];
+
+        // 스킬 문자
+        public char[,] charMap = new char[Console.WindowHeight, Console.WindowWidth];
 
         private Random random = new Random();
 
@@ -68,53 +73,43 @@ namespace ConsoleProject
 
         private void Update()
         {
-            int enemySpawnCount = 0;
+            int count = 1;
 
             while(true)
             {
+                count++;
+
                 // map초기화
                 map = new int[Console.WindowHeight, Console.WindowWidth];
 
                 ShowUI();
 
                 // 일정시간마다 적 랜덤 생성
-                if(enemySpawnCount++ == 50)
-                {
-                    enemySpawnCount = 0;
-                    SpawnEnemy();
-                }
+                SpawnEnemy(count);
 
-                // 플레이어 보여줌
-                _player.ShowEntity();
+                // 플레이어 이동, 공격, 피격
+                _player.Update(count);
 
-                // 적 보여줌
+                // 적 이동, 공격, 피격
                 foreach (Enemy enemy in enemies)
                 {
-                    enemy.ShowEntity();
+                    enemy.Update(count);
                 }
 
-                // 플레이어 공격
-                _player.Attack();
-
-                // 플레이어 맞은지 확인
                 _player.HitCheck();
 
-                if(_player.isDead)
+
+                // 죽음 확인
+                if (_player.isDead)
                 {
                     break;
                 }
 
-                // 적 맞은지 확인
+                // 죽은 적이 있다면 enemies list 정리
+                List<Enemy> temp = new List<Enemy>();
                 foreach (Enemy enemy in enemies)
                 {
-                    enemy.HitCheck();
-                }
-
-                // 죽은 적이 있다면 enemies list 정리
-                List<Enemy> temp = new List<Enemy>(); ;
-                foreach(Enemy enemy in enemies)
-                {
-                    if(!enemy.isDead)
+                    if (!enemy.isDead)
                     {
                         temp.Add(enemy);
                     }
@@ -165,18 +160,22 @@ namespace ConsoleProject
                 {
                     if(_player.PosX != j && _player.PosY != i)
                         Console.WriteLine(' ');
+                    charMap[i, j] = ' ';
                 }
                 Console.WriteLine();
             }
             Console.ResetColor();
         }
 
-        private void SpawnEnemy()
+        private void SpawnEnemy(int count)
         {
-            int randomPosX = random.Next(Console.WindowWidth);
-            int randomPosY = random.Next(Console.WindowHeight);
+            if(count % 10 == 0)
+            {
+                int randomPosX = random.Next(Console.WindowWidth);
+                int randomPosY = random.Next(Console.WindowHeight);
 
-            enemies.Add(new Enemy(randomPosX, randomPosY, 10));
+                enemies.Add(new Enemy(randomPosX, randomPosY, 10));
+            }
         }
     }
 }

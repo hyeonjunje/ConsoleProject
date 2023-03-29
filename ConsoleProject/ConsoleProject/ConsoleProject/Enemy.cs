@@ -73,16 +73,27 @@ namespace ConsoleProject
 
         public override void Dead()
         {
-            
+            Console.SetCursorPosition(PosX, PosY);
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+
+            Console.Write(Game.Instance.charMap[PosY, PosX]);
+
+            Console.ResetColor();
         }
 
         public override void HitCheck()
         {
-            if (Game.Instance.map[PosY, PosX] >= (int)EUnit.Galic && Game.Instance.map[PosY, PosX] < (int)EUnit.Player)
+            if (Game.Instance.attackMap[PosY, PosX] > 0)
             {
-                CurrentHp = 0;
-                // CurrentHp--;
+                CurrentHp -= Game.Instance.attackMap[PosY, PosX];
             }
+        }
+
+        public override void Update(int count)
+        {
+            ShowEntity();
+
+            HitCheck();
         }
     }
 }
