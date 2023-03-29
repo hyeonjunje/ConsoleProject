@@ -30,9 +30,9 @@ namespace ConsoleProject
 
             CurrentHp = maxHp;
 
-            AddSkill(new Whip(5, 20, 20, '∫', ConsoleColor.Magenta));
-            AddSkill(new Rasor(1, 50, 20, '=', ConsoleColor.Blue));
-            AddSkill(new Fireball(3, 30, 100, '@', ConsoleColor.DarkRed));
+            AddSkill(new Whip('∫', "채찍", 5, 20, 20, ConsoleColor.Magenta));
+            AddSkill(new Rasor('=', "레이저", 1, 50, 20, ConsoleColor.Blue));
+            AddSkill(new Fireball('@', "파이어볼", 3, 30, 100, ConsoleColor.DarkRed));
             // AddSkill(new Galic(1, 1, 100, '＠', ConsoleColor.Yellow));
         }
 
@@ -70,6 +70,11 @@ namespace ConsoleProject
             }
         }
 
+        public void LevelUp()
+        {
+            level++;
+        }
+
         public override void Dead()
         {
             
@@ -81,7 +86,8 @@ namespace ConsoleProject
             // 만약 있는 스킬이라면
             if(activeSkill.Contains(skill))
             {
-
+                skill.level++;
+                skill.LevelUp();
             }
             // 없으면
             else

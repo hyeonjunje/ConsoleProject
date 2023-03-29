@@ -8,9 +8,8 @@ namespace ConsoleProject.MySkill
 {
     abstract class MeleeAttackSkill : ActiveSkill
     {
-        public MeleeAttackSkill(int damage, int skillCount, int skillDuration, ConsoleColor entityColor) : base(damage, skillCount, skillDuration, entityColor)
+        public MeleeAttackSkill(char shape, string name, int damage, int skillCount, int skillDuration, ConsoleColor entityColor) : base(shape, name, damage, skillCount, skillDuration, entityColor)
         {
-
         }
 
         public override void Attack(int count)

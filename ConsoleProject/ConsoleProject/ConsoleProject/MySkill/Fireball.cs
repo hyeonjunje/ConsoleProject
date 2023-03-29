@@ -8,9 +8,14 @@ namespace ConsoleProject.MySkill
 {
     class Fireball : ShootingAttackSkill
     {
-        public Fireball(int damage, int skillCount, int skillDuration, char entity, ConsoleColor entityColor) : base(damage, skillCount, skillDuration, entityColor)
+        public Fireball(char shape, string name, int damage, int skillCount, int skillDuration, ConsoleColor entityColor) : base(shape, name, damage, skillCount, skillDuration, entityColor)
         {
-            _entity = entity;
+
+        }
+
+        public override void LevelUp()
+        {
+            throw new NotImplementedException();
         }
 
         public override void SetRange()

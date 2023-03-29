@@ -13,18 +13,14 @@ namespace ConsoleProject.MySkill
         public int skillDuration;
         public bool isUsing;
 
-        protected char _entity;
-        protected ConsoleColor _entityColor;
-
         protected List<Utility.Pair<int, int>> range;
 
-        public ActiveSkill(int damage, int skillCount, int skillDuration, ConsoleColor entityColor)
+        public ActiveSkill(char shape, string name, int damage, int skillCount, int skillDuration, ConsoleColor entityColor) : base(shape, name, entityColor)
         {
             this.damage = damage;
             this.skillCount = skillCount;
             this.skillDuration = skillDuration;
             isUsing = false;
-            _entityColor = entityColor;
 
             range = new List<Utility.Pair<int, int>>();
         }
@@ -32,12 +28,12 @@ namespace ConsoleProject.MySkill
         public virtual void Show()
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.ForegroundColor = _entityColor;
+            Console.ForegroundColor = entityColor;
             for (int i = 0; i < range.Count; i++)
             {
                 Console.SetCursorPosition(range[i].first, range[i].second);
-                Console.Write(_entity);
-                Game.Instance.charMap[range[i].second, range[i].first] = _entity;
+                Console.Write(shape);
+                Game.Instance.charMap[range[i].second, range[i].first] = shape;
                 Game.Instance.attackMap[range[i].second, range[i].first] = damage;
             }
             Console.ResetColor();
@@ -70,5 +66,7 @@ namespace ConsoleProject.MySkill
 
 
         public abstract void Attack(int count);
+
+        public abstract void LevelUp();
     }
 }

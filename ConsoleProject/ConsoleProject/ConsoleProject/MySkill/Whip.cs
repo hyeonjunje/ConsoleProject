@@ -8,11 +8,23 @@ namespace ConsoleProject.MySkill
 {
     class Whip : MeleeAttackSkill
     {
-        public Whip(int damage, int skillCount, int skillDuration, char entity, ConsoleColor entityColor) : base(damage, skillCount, skillDuration, entityColor)
+        int rangeX;
+        int rangeY;
+
+        public Whip(char shape, string name, int damage, int skillCount, int skillDuration, ConsoleColor entityColor) : base(shape, name, damage, skillCount, skillDuration, entityColor)
         {
-            _entity = entity;
+            rangeX = 3;
+            rangeY = 3;
         }
 
+        public override void LevelUp()
+        {
+            if(level % 2 == 1)
+            {
+                rangeX++;
+            }
+            rangeY++;
+        }
 
         public override void SetRange()
         {

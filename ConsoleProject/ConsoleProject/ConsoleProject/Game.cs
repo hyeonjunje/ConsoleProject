@@ -66,6 +66,8 @@ namespace ConsoleProject
         // 스킬 문자
         public char[,] charMap = new char[Console.WindowHeight, Console.WindowWidth];
 
+        private AbilityManager abilityManager;
+
         private Random random = new Random();
 
         private DateTime startTime;
@@ -79,6 +81,8 @@ namespace ConsoleProject
             Console.CursorVisible = false;
 
             _player = new Player();
+
+            abilityManager = new AbilityManager();
         }
 
         public void StartGame()
@@ -99,6 +103,8 @@ namespace ConsoleProject
             while(true)
             {
                 count++;
+
+                CheckLevelUp(ref count);
 
                 // map초기화
                 map = new int[Console.WindowHeight, Console.WindowWidth];
@@ -197,6 +203,30 @@ namespace ConsoleProject
 
                 enemies.Add(new Enemy(randomPosX, randomPosY, 10));
             }
+        }
+
+        private void CheckLevelUp(ref int count)
+        {
+            //if(count == 300)
+            if (count == 300)
+            {
+                count = 0;
+                _player.LevelUp();
+
+                // 스킬 선택 창 보여줌(무한반복)  =>  선택하면 return해서 나올 수 있음
+                abilityManager.ShowLevelUpUI();
+
+                InitmapData();
+            }
+        }
+
+        private void InitmapData()
+        {
+            map = new int[Console.WindowHeight, Console.WindowWidth];
+            attackMap = new int[Console.WindowHeight, Console.WindowWidth];
+            charMap = new char[Console.WindowHeight, Console.WindowWidth];
+
+            ShowBackground();
         }
     }
 }

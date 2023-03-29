@@ -14,10 +14,10 @@ namespace ConsoleProject.MySkill
         protected int dirX;
         protected int dirY;
 
-        protected ShootingAttackSkill(int damage, int skillCount, int skillDuration, ConsoleColor entityColor) : base(damage, skillCount, skillDuration, entityColor)
+        public ShootingAttackSkill(char shape, string name, int damage, int skillCount, int skillDuration, ConsoleColor entityColor) : base(shape, name, damage, skillCount, skillDuration, entityColor)
         {
-
         }
+
 
         public virtual void Aim()
         {
