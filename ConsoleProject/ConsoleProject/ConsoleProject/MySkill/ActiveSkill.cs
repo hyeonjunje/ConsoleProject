@@ -23,9 +23,11 @@ namespace ConsoleProject.MySkill
             isUsing = false;
 
             range = new List<Utility.Pair<int, int>>();
+
+            skillType = ESkillType.Active;
         }
 
-        public virtual void Show()
+        public void Show()
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.ForegroundColor = entityColor;
@@ -39,7 +41,7 @@ namespace ConsoleProject.MySkill
             Console.ResetColor();
         }
 
-        public virtual void UnShow()
+        public void UnShow()
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             for (int i = 0; i < range.Count; i++)
@@ -52,18 +54,17 @@ namespace ConsoleProject.MySkill
             Console.ResetColor();
         }
 
-        public virtual void Use()
+        public void Use()
         {
             isUsing = true;
         }
 
-        public virtual void Finish()
+        public void Finish()
         {
             isUsing = false;
         }
 
         public abstract void SetRange();
-
 
         public abstract void Attack(int count);
 

@@ -38,8 +38,10 @@ namespace ConsoleProject
             allSkills = new List<Skill>();
 
             allSkills.Add(new Whip('∫', "채찍", 5, 20, 20, ConsoleColor.Magenta));
-            allSkills.Add(new Rasor('=', "레이저", 1, 50, 20, ConsoleColor.Blue));
+            allSkills.Add(new Rasor('=', "레이저", 2, 50, 20, ConsoleColor.Blue));
             allSkills.Add(new Fireball('@', "파이어볼", 3, 30, 100, ConsoleColor.DarkRed));
+            allSkills.Add(new Electronic('/', "번개!", 1, 20, 100, ConsoleColor.Yellow));
+            allSkills.Add(new Rest('♨', "휴식~", ConsoleColor.Cyan));
         }
 
         public void ShowLevelUpUI()
@@ -82,7 +84,11 @@ namespace ConsoleProject
 
         public void SelectRandomSkill()
         {
-            for(int i = 0; i < selectedSkills.Length; i++)
+            Random rand = new Random();
+            allSkills = allSkills.OrderBy(_ => rand.Next()).ToList();
+
+
+            for (int i = 0; i < selectedSkills.Length; i++)
             {
                 selectedSkills[i] = allSkills[i];
             }
@@ -166,7 +172,8 @@ namespace ConsoleProject
             if(cki.Key == ConsoleKey.Spacebar)
             {
                 // 선택
-                Game.Instance.Player.AddSkill((ActiveSkill)allSkills[SelectedNumber]);
+                Game.Instance.Player.AddSkill(allSkills[SelectedNumber]);
+
                 return false;
             }
 

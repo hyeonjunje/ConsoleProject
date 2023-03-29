@@ -15,7 +15,7 @@ namespace ConsoleProject.MySkill
 
         public override void LevelUp()
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void SetRange()

@@ -18,8 +18,29 @@ namespace ConsoleProject.MySkill
         {
         }
 
+        public override void Attack(int count)
+        {
+            if (!isUsing && count % skillCount == 0)
+            {
+                SetRange();
 
-        public virtual void Aim()
+                Aim();
+
+                Use();
+            }
+            else if (isUsing && count % skillDuration == 0)
+            {
+                UnShow();
+
+                Finish();
+            }
+            else if(isUsing)
+            {
+                Shoot(dirX, dirY);
+            }
+        }
+
+        private void Aim()
         {
             Enemy enemy = Game.Instance.CloestEnemy;
 
@@ -28,13 +49,13 @@ namespace ConsoleProject.MySkill
                 dirX = 1;
                 dirY = 0;
             }
-            else if(Game.Instance.Player.PosX != enemy.PosX || Game.Instance.Player.PosY != enemy.PosY)
+            else if (Game.Instance.Player.PosX != enemy.PosX || Game.Instance.Player.PosY != enemy.PosY)
             {
-                if(Game.Instance.Player.PosX < enemy.PosX)
+                if (Game.Instance.Player.PosX < enemy.PosX)
                 {
                     dirX = 1;
                 }
-                else if(Game.Instance.Player.PosX > enemy.PosX)
+                else if (Game.Instance.Player.PosX > enemy.PosX)
                 {
                     dirX = -1;
                 }
@@ -61,32 +82,9 @@ namespace ConsoleProject.MySkill
                 dirX = 1;
                 dirY = 0;
             }
-
         }
 
-        public override void Attack(int count)
-        {
-            if (!isUsing && count % skillCount == 0)
-            {
-                SetRange();
-
-                Aim();
-
-                Use();
-            }
-            else if (isUsing && count % skillDuration == 0)
-            {
-                UnShow();
-
-                Finish();
-            }
-            else if(isUsing)
-            {
-                Shoot(dirX, dirY);
-            }
-        }
-
-        public virtual void Shoot(int x, int y)
+        private void Shoot(int x, int y)
         {
             UnShow();
 

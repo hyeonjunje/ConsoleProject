@@ -80,13 +80,25 @@ namespace ConsoleProject
             
         }
 
+        public void AddSkill(Skill skill)
+        {
+            if(skill.skillType == ESkillType.Active)
+            {
+                AddSkill((ActiveSkill)skill);
+            }
+            else if(skill.skillType == ESkillType.Item)
+            {
+                AddSkill((ItemSkill)skill);
+            }
+        }
+
         // 스킬 추가
         public void AddSkill(ActiveSkill skill)
         {
+            skill.level++;
             // 만약 있는 스킬이라면
-            if(activeSkill.Contains(skill))
+            if (activeSkill.Contains(skill))
             {
-                skill.level++;
                 skill.LevelUp();
             }
             // 없으면
@@ -94,6 +106,11 @@ namespace ConsoleProject
             {
                 activeSkill.Add(skill);
             }
+        }
+
+        public void AddSkill(ItemSkill skill)
+        {
+            skill.Use();
         }
 
         public override void HitCheck()
