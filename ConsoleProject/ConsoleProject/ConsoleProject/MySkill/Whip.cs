@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleProject.MySkill
 {
-    class Whip : AttackSkill
+    class Whip : MeleeAttackSkill
     {
         public Whip(int damage, int skillCount, int skillDuration, char entity, ConsoleColor entityColor) : base(damage, skillCount, skillDuration, entityColor)
         {

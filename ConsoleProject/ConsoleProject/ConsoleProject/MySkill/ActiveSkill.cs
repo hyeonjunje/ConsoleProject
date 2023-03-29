@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleProject.MySkill
 {
-    abstract class AttackSkill : Skill
+    abstract class ActiveSkill : Skill
     {
         public int damage;
         public int skillCount;
@@ -18,7 +18,7 @@ namespace ConsoleProject.MySkill
 
         protected List<Utility.Pair<int, int>> range;
 
-        public AttackSkill(int damage, int skillCount, int skillDuration, ConsoleColor entityColor)
+        public ActiveSkill(int damage, int skillCount, int skillDuration, ConsoleColor entityColor)
         {
             this.damage = damage;
             this.skillCount = skillCount;
@@ -45,8 +45,6 @@ namespace ConsoleProject.MySkill
 
         public virtual void UnShow()
         {
-            isUsing = false;
-
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             for (int i = 0; i < range.Count; i++)
             {
@@ -63,6 +61,14 @@ namespace ConsoleProject.MySkill
             isUsing = true;
         }
 
+        public virtual void Finish()
+        {
+            isUsing = false;
+        }
+
         public abstract void SetRange();
+
+
+        public abstract void Attack(int count);
     }
 }

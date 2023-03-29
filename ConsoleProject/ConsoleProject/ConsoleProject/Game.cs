@@ -36,6 +36,27 @@ namespace ConsoleProject
 
         public List<Enemy> enemies = new List<Enemy>();
 
+        public Enemy CloestEnemy
+        {
+            get
+            {
+                double distance = 10000;
+                Enemy enemy = null;
+
+                for(int i = 0; i < enemies.Count; i++)
+                {
+                    double dis = Math.Sqrt(Math.Pow(enemies[i].PosX - _player.PosX, 2) + Math.Pow(enemies[i].PosY - _player.PosY, 2));
+                    if(distance > dis)
+                    {
+                        distance = dis;
+                        enemy = enemies[i];
+                    }
+                }
+
+                return enemy;
+            }
+        }
+
         // 나와 적
         public int[,] map = new int[Console.WindowHeight, Console.WindowWidth];
 

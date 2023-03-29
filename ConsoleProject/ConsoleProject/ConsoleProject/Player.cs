@@ -14,7 +14,7 @@ namespace ConsoleProject
         public int level;
         public bool isRight = true;
 
-        public List<AttackSkill> attackSKill = new List<AttackSkill>();
+        public List<ActiveSkill> activeSkill = new List<ActiveSkill>();
 
         public Player()
         {
@@ -32,7 +32,8 @@ namespace ConsoleProject
 
             AddSkill(new Whip(5, 20, 20, '∫', ConsoleColor.Magenta));
             AddSkill(new Rasor(1, 50, 20, '=', ConsoleColor.Blue));
-            //AddSkill(new Galic(1, 1, 1, '＠', ConsoleColor.Yellow));
+            AddSkill(new Fireball(3, 30, 100, '@', ConsoleColor.DarkRed));
+            // AddSkill(new Galic(1, 1, 100, '＠', ConsoleColor.Yellow));
         }
 
         [DllImport("user32.dll")]
@@ -63,25 +64,9 @@ namespace ConsoleProject
 
         public void Attack(int count)
         {
-            for(int i = 0; i < attackSKill.Count; i++)
+            for(int i = 0; i < activeSkill.Count; i++)
             {
-                // 사용중인 스킬이 아니고 스킬을 사용할 수 있을 때 사용
-                if(!attackSKill[i].isUsing && count % attackSKill[i].skillCount == 0)
-                {
-                    // 범위 설정
-                    attackSKill[i].SetRange();
-
-                    // 스킬 사용
-                    attackSKill[i].Use();
-
-                    // 스킬 시각화
-                    attackSKill[i].Show();
-                }
-                // 스킬이 사용중이며 스킬 지속 시간이 끝날 때
-                else if (attackSKill[i].isUsing && count % attackSKill[i].skillDuration == 0)
-                {
-                    attackSKill[i].UnShow();
-                }
+                activeSkill[i].Attack(count);
             }
         }
 
@@ -91,17 +76,17 @@ namespace ConsoleProject
         }
 
         // 스킬 추가
-        public void AddSkill(AttackSkill skill)
+        public void AddSkill(ActiveSkill skill)
         {
             // 만약 있는 스킬이라면
-            if(attackSKill.Contains(skill))
+            if(activeSkill.Contains(skill))
             {
 
             }
             // 없으면
             else
             {
-                attackSKill.Add(skill);
+                activeSkill.Add(skill);
             }
         }
 
@@ -118,7 +103,6 @@ namespace ConsoleProject
             ShowEntity();
 
             Attack(count);
-
         }
     }
 }

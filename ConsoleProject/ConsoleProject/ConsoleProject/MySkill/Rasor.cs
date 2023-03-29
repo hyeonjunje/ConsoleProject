@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleProject.MySkill
 {
-    class Rasor : AttackSkill
+    class Rasor : MeleeAttackSkill
     {
         public Rasor(int damage, int skillCount, int skillDuration, char entity, ConsoleColor entityColor) : base(damage, skillCount, skillDuration, entityColor)
         {
