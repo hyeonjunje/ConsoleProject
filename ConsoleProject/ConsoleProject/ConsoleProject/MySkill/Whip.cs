@@ -21,9 +21,20 @@ namespace ConsoleProject.MySkill
             int offsetY = Game.Instance.Player.PosY;
             int[,] map = Game.Instance.map;
 
-            for(int j = offsetY - 1; j < offsetY + 2; j++)
+            for(int j = offsetY + 1; j < offsetY + 4; j++)
             {
-                for (int i = offsetX + 2; i <= offsetX + 10; i++)
+                for (int i = offsetX + -1; i <= offsetX + 1; i++)
+                {
+                    if (map.GetLength(1) <= i || i < 1 || map.GetLength(0) <= j || j < 1)
+                        continue;
+
+                    range.Add(new Utility.Pair<int, int>(i, j));
+                }
+            }
+
+            for (int i = offsetX -1; i <= offsetX + 1; i++)
+            {
+                for(int j = offsetY + 1; j < offsetY + 4; j++)
                 {
                     if (map.GetLength(1) <= i || i < 1 || map.GetLength(0) <= j || j < 1)
                         continue;
@@ -31,7 +42,7 @@ namespace ConsoleProject.MySkill
                     range.Add(new Utility.Pair<int, int>(i, j));
                 }
 
-                for (int i = offsetX - 2; i >= offsetX - 10; i--)
+                for(int j = offsetY - 1; j > offsetY - 4; j--)
                 {
                     if (map.GetLength(1) <= i || i < 1 || map.GetLength(0) <= j || j < 1)
                         continue;

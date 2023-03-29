@@ -31,8 +31,8 @@ namespace ConsoleProject
 
             CurrentHp = maxHp;
 
-            //AddSkill(new Whip(3, 20, 10, '~', ConsoleColor.Magenta));
-            //AddSkill(new Rasor(5, 40, 20, '=', ConsoleColor.Blue));
+            AddSkill(new Whip(3, 20, 1, '∫', ConsoleColor.Magenta));
+            AddSkill(new Rasor(5, 50, 1, '=', ConsoleColor.Blue));
             //AddSkill(new Galic(1, 1, 1, '＠', ConsoleColor.Yellow));
         }
 

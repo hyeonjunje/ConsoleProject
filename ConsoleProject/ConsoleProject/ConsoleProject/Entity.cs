@@ -16,8 +16,6 @@ namespace ConsoleProject
         private int _posX;
         private int _posY;
 
-        private EUnit prevUnit = EUnit.None;
-
         protected char _entity;
         protected EUnit _unit;
         protected ConsoleColor _entityColor;
