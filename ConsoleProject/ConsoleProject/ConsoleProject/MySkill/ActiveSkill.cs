@@ -35,8 +35,8 @@ namespace ConsoleProject.MySkill
             {
                 Console.SetCursorPosition(range[i].first, range[i].second);
                 Console.Write(shape);
-                Game.Instance.charMap[range[i].second, range[i].first] = shape;
-                Game.Instance.attackMap[range[i].second, range[i].first] = damage;
+                GameManager.Instance.charMap[range[i].second, range[i].first] = shape;
+                GameManager.Instance.attackMap[range[i].second, range[i].first] = damage;
             }
             Console.ResetColor();
         }
@@ -48,8 +48,8 @@ namespace ConsoleProject.MySkill
             {
                 Console.SetCursorPosition(range[i].first, range[i].second);
                 Console.Write(' ');
-                Game.Instance.charMap[range[i].second, range[i].first] = ' ';
-                Game.Instance.attackMap[range[i].second, range[i].first] = 0;
+                GameManager.Instance.charMap[range[i].second, range[i].first] = ' ';
+                GameManager.Instance.attackMap[range[i].second, range[i].first] = 0;
             }
             Console.ResetColor();
         }

@@ -4,34 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace ConsoleProject
+namespace ConsoleProject.Scene
 {
-    enum EUnit
+    class MainScene : BaseScene
     {
-        // 렌더링되는 순서
-        None,    // 0
-        Player,  // 1
-        Enemy,   // 2
-    }
-
-    class Game
-    {
-        #region 싱글톤
-        private static Game _instance = null;
-        public static Game Instance
-        {
-            get
-            {
-                if(_instance == null)
-                {
-                    _instance = new Game();
-                }
-                return _instance;
-            }
-        }
-        #endregion
-
+        private int _count = 1;
+        private DateTime _startTime;
         private Player _player;
+
         public Player Player { get { return _player; } }
 
         public List<Enemy> enemies = new List<Enemy>();
@@ -43,10 +23,10 @@ namespace ConsoleProject
                 double distance = 10000;
                 Enemy enemy = null;
 
-                for(int i = 0; i < enemies.Count; i++)
+                for (int i = 0; i < enemies.Count; i++)
                 {
                     double dis = Math.Sqrt(Math.Pow(enemies[i].PosX - _player.PosX, 2) + Math.Pow(enemies[i].PosY - _player.PosY, 2));
-                    if(distance > dis)
+                    if (distance > dis)
                     {
                         distance = dis;
                         enemy = enemies[i];
@@ -70,90 +50,80 @@ namespace ConsoleProject
 
         private Random random = new Random();
 
-        private DateTime startTime;
 
-        public Game()
+        public override void End()
         {
-            // 콘솔창 이름
-            Console.Title = "경일 서바이벌";
+            
+        }
 
-            // 콘솔 커서 안보이게 하기
-            Console.CursorVisible = false;
+        public override void Start()
+        {
+            _count = 1;
+
+            _startTime = DateTime.Now;
 
             _player = new Player();
 
             abilityManager = new AbilityManager();
 
-            _player.AddSkill((MySkill.ActiveSkill)abilityManager.allSkills[0]);
-        }
-
-        public void StartGame()
-        {
-            startTime = DateTime.Now;
+            // 플레이어 능력 초기화
+            abilityManager.InitAbility();
 
             // 시작시 실행할 부분
-            ShowBackground();
-
-            // 계속 실행할 부분
-            Update();
+            InitmapData();
         }
 
-        private void Update()
+        public override void Update()
         {
-            int count = 1;
+            _count++;
 
-            while(true)
+            CheckLevelUp(ref _count);
+
+            // map초기화
+            map = new int[Console.WindowHeight, Console.WindowWidth];
+
+            ShowUI();
+
+            // 일정시간마다 적 랜덤 생성
+            SpawnEnemy(_count);
+
+            // 플레이어 이동, 공격, 피격
+            _player.Update(_count);
+
+            // 적 이동, 공격, 피격
+            foreach (Enemy enemy in enemies)
             {
-                count++;
-
-                CheckLevelUp(ref count);
-
-                // map초기화
-                map = new int[Console.WindowHeight, Console.WindowWidth];
-
-                ShowUI();
-
-                // 일정시간마다 적 랜덤 생성
-                SpawnEnemy(count);
-
-                // 플레이어 이동, 공격, 피격
-                _player.Update(count);
-
-                // 적 이동, 공격, 피격
-                foreach (Enemy enemy in enemies)
-                {
-                    enemy.Update(count);
-                }
-
-                _player.HitCheck();
-
-
-                // 죽음 확인
-                if (_player.isDead)
-                {
-                    break;
-                }
-
-                // 죽은 적이 있다면 enemies list 정리
-                List<Enemy> temp = new List<Enemy>();
-                foreach (Enemy enemy in enemies)
-                {
-                    if (!enemy.isDead)
-                    {
-                        temp.Add(enemy);
-                    }
-                }
-                enemies = temp;
-
-                // 30프레임
-                Thread.Sleep(33);
+                enemy.Update(_count);
             }
+
+            _player.HitCheck();
+
+            /*            // 엔딩씬 체인지
+                        // 죽음 확인
+                        if (_player.isDead)
+                        {
+                            break;
+                        }*/
+
+            // 죽은 적이 있다면 enemies list 정리
+            List<Enemy> temp = new List<Enemy>();
+            foreach (Enemy enemy in enemies)
+            {
+                if (!enemy.isDead)
+                {
+                    temp.Add(enemy);
+                }
+            }
+            enemies = temp;
+
+            // 30프레임
+            Thread.Sleep(33);
         }
 
         private void ShowUI()
         {
-            TimeSpan time = DateTime.Now - startTime;
-            string playerInfoText = $" HP({ _player.CurrentHp}/{ _player.maxHp})  {time.ToString(@"hh\:mm\:ss"), 50}                                            Level : {_player.level}";
+            TimeSpan time = DateTime.Now - _startTime;
+            string playerInfoText = $" HP({ _player.CurrentHp}/{ _player.maxHp})  {time.ToString(@"hh\:mm\:ss"),50}                                            Level : {_player.level}";
 
             // Hp Bar   
             Console.SetCursorPosition(0, 0);
@@ -168,7 +138,7 @@ namespace ConsoleProject
                     Console.BackgroundColor = ConsoleColor.Black;
                 }
 
-                if(playerInfoText.Length > i)
+                if (playerInfoText.Length > i)
                 {
                     Console.Write(playerInfoText[i]);
                 }
@@ -183,11 +153,11 @@ namespace ConsoleProject
         private void ShowBackground()
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
-            for(int i = 0; i < Console.WindowHeight; i++)
+            for (int i = 0; i < Console.WindowHeight; i++)
             {
-                for(int j = 0; j < Console.WindowWidth; j++)
+                for (int j = 0; j < Console.WindowWidth; j++)
                 {
-                    if(_player.PosX != j && _player.PosY != i)
+                    if (_player.PosX != j && _player.PosY != i)
                         Console.WriteLine(' ');
                     charMap[i, j] = ' ';
                 }
@@ -198,7 +168,7 @@ namespace ConsoleProject
 
         private void SpawnEnemy(int count)
         {
-            if(count % 10 == 0)
+            if (count % 10 == 0)
             {
                 int randomPosX = random.Next(Console.WindowWidth);
                 int randomPosY = random.Next(Console.WindowHeight);

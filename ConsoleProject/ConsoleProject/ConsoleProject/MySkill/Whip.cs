@@ -29,9 +29,9 @@ namespace ConsoleProject.MySkill
         public override void SetRange()
         {
             range.Clear();
-            int offsetX = Game.Instance.Player.PosX;
-            int offsetY = Game.Instance.Player.PosY;
-            int[,] map = Game.Instance.map;
+            int offsetX = GameManager.Instance.Player.PosX;
+            int offsetY = GameManager.Instance.Player.PosY;
+            int[,] map = GameManager.Instance.map;
 
             for (int i = offsetX - rangeX; i <= offsetX + rangeX; i++)
             {

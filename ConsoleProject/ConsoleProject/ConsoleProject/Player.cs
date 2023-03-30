@@ -115,7 +115,7 @@ namespace ConsoleProject
 
         public override void HitCheck()
         {
-            if(Game.Instance.map[PosY, PosX] == (int)EUnit.Enemy)
+            if(GameManager.Instance.map[PosY, PosX] == (int)EUnit.Enemy)
             {
                 CurrentHp--;
             }

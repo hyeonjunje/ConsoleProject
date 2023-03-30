@@ -42,20 +42,20 @@ namespace ConsoleProject.MySkill
 
         private void Aim()
         {
-            Enemy enemy = Game.Instance.CloestEnemy;
+            Enemy enemy = GameManager.Instance.CloestEnemy;
 
             if (enemy == null)
             {
                 dirX = 1;
                 dirY = 0;
             }
-            else if (Game.Instance.Player.PosX != enemy.PosX || Game.Instance.Player.PosY != enemy.PosY)
+            else if (GameManager.Instance.Player.PosX != enemy.PosX || GameManager.Instance.Player.PosY != enemy.PosY)
             {
-                if (Game.Instance.Player.PosX < enemy.PosX)
+                if (GameManager.Instance.Player.PosX < enemy.PosX)
                 {
                     dirX = 1;
                 }
-                else if (Game.Instance.Player.PosX > enemy.PosX)
+                else if (GameManager.Instance.Player.PosX > enemy.PosX)
                 {
                     dirX = -1;
                 }
@@ -64,11 +64,11 @@ namespace ConsoleProject.MySkill
                     dirX = 0;
                 }
 
-                if (Game.Instance.Player.PosY < enemy.PosY)
+                if (GameManager.Instance.Player.PosY < enemy.PosY)
                 {
                     dirY = 1;
                 }
-                else if (Game.Instance.Player.PosY > enemy.PosY)
+                else if (GameManager.Instance.Player.PosY > enemy.PosY)
                 {
                     dirY = -1;
                 }
@@ -96,7 +96,7 @@ namespace ConsoleProject.MySkill
             int radius = 4;
             int offsetX = posX;
             int offsetY = posY;
-            int[,] map = Game.Instance.map;
+            int[,] map = GameManager.Instance.map;
 
             for (int i = offsetY - radius / 2 + y; i <= offsetY + radius / 2 + y; i++)
             {

@@ -17,7 +17,7 @@ namespace ConsoleProject.MySkill
 
         public override void Use()
         {
-            Game.Instance.Player.CurrentHp += healAmount;
+            GameManager.Instance.Player.CurrentHp += healAmount;
         }
     }
 }

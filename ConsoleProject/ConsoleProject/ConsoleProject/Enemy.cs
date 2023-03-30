@@ -36,8 +36,8 @@ namespace ConsoleProject
             }
             _moveCount++;
 
-            int targetPosX = Game.Instance.Player.PosX;
-            int targetPosY = Game.Instance.Player.PosY;
+            int targetPosX = GameManager.Instance.Player.PosX;
+            int targetPosY = GameManager.Instance.Player.PosY;
 
             int goalPosX = PosX;
             int goalPosY = PosY;
@@ -63,7 +63,7 @@ namespace ConsoleProject
             }
 
             // 이동하려는 곳에 이미 다른 적이 있다면 이동 불가
-            if (Game.Instance.map[goalPosY, goalPosX] == (int)EUnit.Enemy)
+            if (GameManager.Instance.map[goalPosY, goalPosX] == (int)EUnit.Enemy)
             {
                 return;
             }
@@ -76,16 +76,16 @@ namespace ConsoleProject
             Console.SetCursorPosition(PosX, PosY);
             Console.BackgroundColor = ConsoleColor.DarkGreen;
 
-            Console.Write(Game.Instance.charMap[PosY, PosX]);
+            Console.Write(GameManager.Instance.charMap[PosY, PosX]);
 
             Console.ResetColor();
         }
 
         public override void HitCheck()
         {
-            if (Game.Instance.attackMap[PosY, PosX] > 0)
+            if (GameManager.Instance.attackMap[PosY, PosX] > 0)
             {
-                CurrentHp -= Game.Instance.attackMap[PosY, PosX];
+                CurrentHp -= GameManager.Instance.attackMap[PosY, PosX];
             }
         }
 

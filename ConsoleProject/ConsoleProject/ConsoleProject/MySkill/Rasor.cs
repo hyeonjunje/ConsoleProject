@@ -24,11 +24,11 @@ namespace ConsoleProject.MySkill
         {
             range.Clear();
 
-            int offsetX = Game.Instance.Player.PosX;
-            int offsetY = Game.Instance.Player.PosY;
-            int[,] map = Game.Instance.map;
+            int offsetX = GameManager.Instance.Player.PosX;
+            int offsetY = GameManager.Instance.Player.PosY;
+            int[,] map = GameManager.Instance.map;
 
-            if(Game.Instance.Player.isRight)
+            if(GameManager.Instance.Player.isRight)
             {
                 for(int i = offsetY - width; i <= offsetY + width; i++)
                 {

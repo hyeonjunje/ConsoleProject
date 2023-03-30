@@ -44,6 +44,11 @@ namespace ConsoleProject
             allSkills.Add(new Rest('♨', "휴식~", ConsoleColor.Cyan));
         }
 
+        public void InitAbility()
+        {
+            GameManager.Instance.Player.AddSkill(allSkills[0]);
+        }
+
         public void ShowLevelUpUI()
         {
             // 화면 보여줌
@@ -172,7 +177,7 @@ namespace ConsoleProject
             if(cki.Key == ConsoleKey.Spacebar)
             {
                 // 선택
-                Game.Instance.Player.AddSkill(allSkills[SelectedNumber]);
+                GameManager.Instance.Player.AddSkill(allSkills[SelectedNumber]);
 
                 return false;
             }

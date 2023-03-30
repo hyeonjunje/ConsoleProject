@@ -59,15 +59,15 @@ namespace ConsoleProject
         {
             Console.SetCursorPosition(PosX, PosY);
             Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.Write(Game.Instance.charMap[PosY, PosX]);
-            Game.Instance.map[PosY, PosX] = (int)EUnit.None;
+            Console.Write(GameManager.Instance.charMap[PosY, PosX]);
+            GameManager.Instance.map[PosY, PosX] = (int)EUnit.None;
 
             Move();
 
             Console.SetCursorPosition(PosX, PosY);
             Console.BackgroundColor = _entityColor;
-            Console.Write(Game.Instance.charMap[PosY, PosX]);
-            Game.Instance.map[PosY, PosX] = (int)_unit;
+            Console.Write(GameManager.Instance.charMap[PosY, PosX]);
+            GameManager.Instance.map[PosY, PosX] = (int)_unit;
 
             Console.ResetColor();
         }

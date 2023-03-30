@@ -10,7 +10,9 @@ namespace ConsoleProject
     {
         static void Main(string[] args)
         {
-            Game.Instance.StartGame();
+            GameManager.Instance.Start();
+
+            GameManager.Instance.Update();
         }
     }
 }
