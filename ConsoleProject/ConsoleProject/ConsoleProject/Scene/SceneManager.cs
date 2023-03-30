@@ -17,22 +17,8 @@ namespace ConsoleProject.Scene
     }
 
 
-    class SceneManager
+    class SceneManager : Singleton<SceneManager>
     {
-        private static SceneManager _instance = null;
-        public static SceneManager Instance
-        {
-            get
-            {
-                if(_instance == null)
-                {
-                    _instance = new SceneManager();
-                }
-
-                return _instance;
-            }
-        }
-
         private Dictionary<EScene, BaseScene> _sceneDictionary = new Dictionary<EScene, BaseScene>();
         public BaseScene CurrentScene { get; private set; }
 

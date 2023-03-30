@@ -81,7 +81,6 @@ namespace ConsoleProject.Scene
                 }
                 Console.WriteLine();
             }
-
             enemies.Clear();
         }
 

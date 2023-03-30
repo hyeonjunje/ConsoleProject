@@ -15,23 +15,8 @@ namespace ConsoleProject
         Enemy,   // 2
     }
 
-    class GameManager
+    class GameManager : Singleton<GameManager>
     {
-        #region 싱글톤
-        private static GameManager _instance = null;
-        public static GameManager Instance
-        {
-            get
-            {
-                if(_instance == null)
-                {
-                    _instance = new GameManager();
-                }
-                return _instance;
-            }
-        }
-        #endregion
-
         public Player Player => ((MainScene)SceneManager.Instance.GetScene(EScene.Main)).Player;
 
         public List<Enemy> enemies = ((MainScene)SceneManager.Instance.GetScene(EScene.Main)).enemies;
