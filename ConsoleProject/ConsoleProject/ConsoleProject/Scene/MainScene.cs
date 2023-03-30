@@ -53,7 +53,7 @@ namespace ConsoleProject.Scene
 
         public override void End()
         {
-            
+
         }
 
         public override void Start()

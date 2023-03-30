@@ -10,7 +10,10 @@ namespace ConsoleProject.Scene
     {
         None,
         Intro,
+        Info,
+        Credit,
         Main,
+        Ending,
     }
 
 
@@ -37,6 +40,8 @@ namespace ConsoleProject.Scene
         {
             _sceneDictionary[EScene.Intro] = new IntroScene();
             _sceneDictionary[EScene.Main] = new MainScene();
+            _sceneDictionary[EScene.Info] = new InfoScene();
+            _sceneDictionary[EScene.Credit] = new CreditScene();
         }
 
         public void ChangeScene(EScene scene)

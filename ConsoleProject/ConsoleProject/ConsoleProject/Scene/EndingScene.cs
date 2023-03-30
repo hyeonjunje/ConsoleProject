@@ -10,7 +10,16 @@ namespace ConsoleProject.Scene
     {
         public override void End()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+
+            for (int i = 0; i < Console.WindowHeight; i++)
+            {
+                for (int j = 0; j < Console.WindowWidth; j++)
+                {
+                    Console.Write(' ');
+                }
+                Console.WriteLine();
+            }
         }
 
         public override void Start()

@@ -63,7 +63,9 @@
     <Compile Include="MySkill\Skill.cs" />
     <Compile Include="MySkill\Whip.cs" />
     <Compile Include="Scene\BaseScene.cs" />
+    <Compile Include="Scene\CreditScene.cs" />
     <Compile Include="Scene\EndingScene.cs" />
+    <Compile Include="Scene\InfoScene.cs" />
     <Compile Include="Scene\IntroScene.cs" />
     <Compile Include="Scene\MainScene.cs" />
     <Compile Include="Scene\SceneManager.cs" />
