@@ -10,7 +10,7 @@ namespace ConsoleProject.MySkill
     {
         int width = 0;
 
-        public Rasor(char shape, string name, int damage, int skillCount, int skillDuration, ConsoleColor entityColor) : base(shape, name, damage, skillCount, skillDuration, entityColor)
+        public Rasor(char shape, string name, int maxLevel, ConsoleColor entityColor, int damage, int skillCount, int skillDuration) : base(shape, name, maxLevel, entityColor, damage, skillCount, skillDuration)
         {
             width = 0;
         }

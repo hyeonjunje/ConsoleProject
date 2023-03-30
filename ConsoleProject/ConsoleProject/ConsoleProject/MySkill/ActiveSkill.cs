@@ -15,7 +15,7 @@ namespace ConsoleProject.MySkill
 
         protected List<Utility.Pair<int, int>> range;
 
-        public ActiveSkill(char shape, string name, int damage, int skillCount, int skillDuration, ConsoleColor entityColor) : base(shape, name, entityColor)
+        protected ActiveSkill(char shape, string name, int maxLevel, ConsoleColor entityColor, int damage, int skillCount, int skillDuration) : base(shape, name, maxLevel, entityColor)
         {
             this.damage = damage;
             this.skillCount = skillCount;

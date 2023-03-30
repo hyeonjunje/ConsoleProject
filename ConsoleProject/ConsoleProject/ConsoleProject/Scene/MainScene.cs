@@ -13,6 +13,8 @@ namespace ConsoleProject.Scene
         private Player _player;
         private int _spawnCount;
 
+        private bool _isEnemyEvent = false;
+
         public Player Player { get { return _player; } }
 
         public List<Enemy> enemies = new List<Enemy>();
@@ -91,6 +93,8 @@ namespace ConsoleProject.Scene
             _spawnCount = 10;
 
             _count = 1;
+
+            _isEnemyEvent = false;
 
             _startTime = DateTime.Now;
 
@@ -193,6 +197,29 @@ namespace ConsoleProject.Scene
 
         private void SpawnEnemy(int count)
         {
+            // 1분마다 사방에서 몬스터 덮쳐오기
+            if (time.ToString(@"\:ss") == ":59" && !_isEnemyEvent)
+            {
+                for(int i = Utility.MyUtility.ConsoleYMin; i < Console.WindowHeight; i+=3)
+                {
+                    enemies.Add(new Enemy(0, i, 10));
+                    enemies.Add(new Enemy(Console.WindowWidth - 1, i, 10));
+                }
+
+                for (int i = 1; i < Console.WindowWidth; i+=3)
+                {
+                    enemies.Add(new Enemy(i, Utility.MyUtility.ConsoleYMin, 10));
+                    enemies.Add(new Enemy(i, Console.WindowHeight, 10));
+                }
+
+                _isEnemyEvent = true;
+            }
+            else if(time.ToString(@"\:ss") == ":00")
+            {
+                _isEnemyEvent = false;
+            }
+
+
             if (count % SpawnCount == 0)
             {
                 int randomPosX = random.Next(Console.WindowWidth);

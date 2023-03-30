@@ -73,7 +73,8 @@ namespace ConsoleProject
 
         public override void Dead()
         {
-            GameManager.Instance.Player.CurrentExp++;
+            GameManager.Instance.Player.CurrentExp += 20;
+            //GameManager.Instance.Player.CurrentExp += GameManager.Instance.Player.expAmount;
 
             ((Scene.MainScene)Scene.SceneManager.Instance.GetScene(Scene.EScene.Main)).enemiesCount++;
 

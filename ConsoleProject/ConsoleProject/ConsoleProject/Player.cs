@@ -14,6 +14,9 @@ namespace ConsoleProject
         public int level;
         public bool isRight = true;
 
+        public int moveSpeed = 1;
+        public int expAmount = 1;
+
         private int _currentExp;
         public int CurrentExp
         {
@@ -31,7 +34,7 @@ namespace ConsoleProject
                 }
 
                 Console.SetCursorPosition(0, 1);
-                Console.Write($"다음 레벨까지 앞으로 {level * 10 - CurrentExp} 마리");
+                Console.Write($"다음 레벨까지 앞으로 {level * 10 - CurrentExp}");
                 Console.ResetColor();
 
                 if (_currentExp >= level * 10)
@@ -49,6 +52,9 @@ namespace ConsoleProject
         {
             level = 1;
             isRight = true;
+
+            moveSpeed = 1;
+            expAmount = 1;
 
             PosX = Console.WindowWidth / 2;
             PosY = Console.WindowHeight / 2;
@@ -70,21 +76,21 @@ namespace ConsoleProject
         {
             if (GetAsyncKeyState((int)ConsoleKey.W) != 0)
             {
-                PosY--;
+                PosY -= moveSpeed;
             }
             if (GetAsyncKeyState((int)ConsoleKey.A) != 0)
             {
                 isRight = false;
-                PosX--;
+                PosX -= moveSpeed;
             }
             if (GetAsyncKeyState((int)ConsoleKey.S) != 0)
             {
-                PosY++;
+                PosY += moveSpeed;
             }
             if (GetAsyncKeyState((int)ConsoleKey.D) != 0)
             {
                 isRight = true;
-                PosX++;
+                PosX += moveSpeed;
             }
         }
 

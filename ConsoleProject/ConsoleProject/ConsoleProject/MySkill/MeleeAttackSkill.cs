@@ -8,7 +8,7 @@ namespace ConsoleProject.MySkill
 {
     abstract class MeleeAttackSkill : ActiveSkill
     {
-        public MeleeAttackSkill(char shape, string name, int damage, int skillCount, int skillDuration, ConsoleColor entityColor) : base(shape, name, damage, skillCount, skillDuration, entityColor)
+        protected MeleeAttackSkill(char shape, string name, int maxLevel, ConsoleColor entityColor, int damage, int skillCount, int skillDuration) : base(shape, name, maxLevel, entityColor, damage, skillCount, skillDuration)
         {
         }
 

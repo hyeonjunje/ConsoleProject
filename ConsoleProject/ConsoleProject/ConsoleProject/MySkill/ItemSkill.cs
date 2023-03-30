@@ -8,7 +8,7 @@ namespace ConsoleProject.MySkill
 {
     abstract class ItemSkill : Skill
     {
-        public ItemSkill(char shape, string name, ConsoleColor entityColor) : base(shape, name, entityColor)
+        protected ItemSkill(char shape, string name, int maxLevel, ConsoleColor entityColor) : base(shape, name, maxLevel, entityColor)
         {
             skillType = ESkillType.Item;
         }

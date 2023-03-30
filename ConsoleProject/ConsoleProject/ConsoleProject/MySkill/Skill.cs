@@ -18,13 +18,15 @@ namespace ConsoleProject.MySkill
         public char shape;
         public string name;
         public int level;
+        public int maxLevel;
         public ConsoleColor entityColor;
         public ESkillType skillType = ESkillType.None;
 
-        public Skill(char shape, string name, ConsoleColor entityColor)
+        public Skill(char shape, string name, int maxLevel, ConsoleColor entityColor)
         {
             this.shape = shape;
             this.name = name;
+            this.maxLevel = maxLevel;
             this.entityColor = entityColor;
             level = 0;
         }

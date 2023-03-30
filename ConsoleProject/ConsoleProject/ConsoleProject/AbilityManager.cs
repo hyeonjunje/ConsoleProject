@@ -18,7 +18,7 @@ namespace ConsoleProject
 
         public List<Skill> allSkills;
 
-        private Skill[] selectedSkills = new Skill[3];
+        private List<Skill> selectedSkills = new List<Skill>();
 
         private int _selectedNumber = 0;
 
@@ -29,7 +29,7 @@ namespace ConsoleProject
             {
                 _selectedNumber = value;
 
-                _selectedNumber = Utility.MyUtility.Clamp(_selectedNumber, 0, 2);
+                _selectedNumber = Utility.MyUtility.Clamp(_selectedNumber, 0, selectedSkills.Count - 1);
             }
         }
 
@@ -37,11 +37,13 @@ namespace ConsoleProject
         {
             allSkills = new List<Skill>();
 
-            allSkills.Add(new Whip('∫', "채찍", 5, 20, 20, ConsoleColor.Magenta));
-            allSkills.Add(new Rasor('=', "레이저", 2, 50, 20, ConsoleColor.Blue));
-            allSkills.Add(new Fireball('@', "파이어볼", 3, 30, 100, ConsoleColor.DarkRed));
-            allSkills.Add(new Electronic('/', "번개!", 1, 20, 100, ConsoleColor.Yellow));
-            allSkills.Add(new Rest('♨', "휴식~", ConsoleColor.Cyan));
+            allSkills.Add(new Whip('∫', "채찍", 5, ConsoleColor.Magenta,  5, 20, 20));
+            allSkills.Add(new Rasor('=', "레이저", 5, ConsoleColor.Blue, 2, 50, 20));
+            allSkills.Add(new Fireball('@', "파이어볼", 5, ConsoleColor.DarkRed, 3, 30, 100));
+            allSkills.Add(new Electronic('/', "번개!", 5, ConsoleColor.Yellow, 1, 20, 100));
+            allSkills.Add(new Rest('♨', "휴식~", 99, ConsoleColor.Cyan));
+            allSkills.Add(new Speed('》', "이속증가", 2, ConsoleColor.Green));
+            allSkills.Add(new ExpAdder('△', "exp량 증가", 2, ConsoleColor.Green));
         }
 
         public void InitAbility()
@@ -68,15 +70,15 @@ namespace ConsoleProject
             // 스킬 무작위 선택
             SelectRandomSkill();
 
-            ShowAbility(Console.WindowWidth / 2 - AbilityCardWidth / 2 - PaddingX - AbilityCardWidth, Console.WindowHeight / 2 - AbilityCardHeight / 2, 0);
-            ShowAbility(Console.WindowWidth / 2 - AbilityCardWidth / 2, Console.WindowHeight / 2 - AbilityCardHeight / 2, 1);
-            ShowAbility(Console.WindowWidth / 2 - AbilityCardWidth / 2 + PaddingX + AbilityCardWidth, Console.WindowHeight / 2 - AbilityCardHeight / 2, 2);
+            for(int i = 0; i < selectedSkills.Count; i++)
+            {
+                ShowAbility(Console.WindowWidth / 2 - AbilityCardWidth / 2 + (PaddingX + AbilityCardWidth) * (i -  1), Console.WindowHeight / 2 - AbilityCardHeight / 2, i);
+            }
 
             Console.SetCursorPosition(Console.WindowWidth / 2 - 2, (Console.WindowHeight / 2) - (AbilityCardHeight / 2) - 6);
             Console.Write("레벨업!!!");
             Console.SetCursorPosition(Console.WindowWidth / 2 - 15, (Console.WindowHeight / 2) - (AbilityCardHeight / 2) - 5);
             Console.Write("A, D  :   선택,      SpaceBar   :    결정");
-
             while(true)
             {
                 if (!SelectInput())
@@ -90,12 +92,28 @@ namespace ConsoleProject
         public void SelectRandomSkill()
         {
             Random rand = new Random();
+
+            selectedSkills = new List<Skill>();
+            List<Skill> temp = new List<Skill>();
+
+            for(int i = 0; i < allSkills.Count; i++)
+            {
+                if(allSkills[i].level <= allSkills[i].maxLevel)
+                {
+                    temp.Add(allSkills[i]);
+                }
+            }
+            allSkills = temp;
+
             allSkills = allSkills.OrderBy(_ => rand.Next()).ToList();
 
 
-            for (int i = 0; i < selectedSkills.Length; i++)
+            for (int i = 0; i < 3; i++)
             {
-                selectedSkills[i] = allSkills[i];
+                if(i < allSkills.Count)
+                {
+                    selectedSkills.Add(allSkills[i]);
+                }
             }
         }
 

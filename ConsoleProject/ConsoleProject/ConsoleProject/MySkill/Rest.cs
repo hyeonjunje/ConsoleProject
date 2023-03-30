@@ -10,7 +10,7 @@ namespace ConsoleProject.MySkill
     {
         int healAmount;
 
-        public Rest(char shape, string name, ConsoleColor entityColor) : base(shape, name, entityColor)
+        public Rest(char shape, string name, int maxLevel, ConsoleColor entityColor) : base(shape, name, maxLevel, entityColor)
         {
             healAmount = 30;
         }
