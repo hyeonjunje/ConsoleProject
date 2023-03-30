@@ -24,12 +24,31 @@ namespace ConsoleProject.Scene
 
         public override void Start()
         {
-            throw new NotImplementedException();
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 8, Console.WindowHeight / 2 - 10);
+            Console.Write("당신은 죽어버렸습니다.");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 30, Console.WindowHeight / 2 - 9);
+            Console.Write($"살아남은 시간 : {((Scene.MainScene)Scene.SceneManager.Instance.GetScene(Scene.EScene.Main)).enemiesCount}");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 20, Console.WindowHeight / 2 - 8);
+            Console.Write($"쓰러뜨린 적 : {((Scene.MainScene)Scene.SceneManager.Instance.GetScene(Scene.EScene.Main)).time.ToString(@"hh\:mm\:ss")}");
+
+
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 5, Console.WindowHeight / 2 + 6);
+            Console.WriteLine("처음으로");
+
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 7, Console.WindowHeight / 2 + 6);
+            Console.Write('▶');
         }
 
         public override void Update()
         {
-            throw new NotImplementedException();
+            ConsoleKeyInfo cki;
+
+            cki = Console.ReadKey(true);
+
+            if (cki.Key == ConsoleKey.Spacebar)
+            {
+                SceneManager.Instance.ChangeScene(EScene.Intro);
+            }
         }
     }
 }

@@ -73,6 +73,10 @@ namespace ConsoleProject
 
         public override void Dead()
         {
+            GameManager.Instance.Player.CurrentExp++;
+
+            ((Scene.MainScene)Scene.SceneManager.Instance.GetScene(Scene.EScene.Main)).enemiesCount++;
+
             Console.SetCursorPosition(PosX, PosY);
             Console.BackgroundColor = ConsoleColor.DarkGreen;
 

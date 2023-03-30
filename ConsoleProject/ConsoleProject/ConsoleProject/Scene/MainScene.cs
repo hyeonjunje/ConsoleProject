@@ -11,10 +11,14 @@ namespace ConsoleProject.Scene
         private int _count = 1;
         private DateTime _startTime;
         private Player _player;
+        private int _spawnCount;
 
         public Player Player { get { return _player; } }
 
         public List<Enemy> enemies = new List<Enemy>();
+
+        public int enemiesCount = 0;
+        public TimeSpan time;
 
         public Enemy CloestEnemy
         {
@@ -37,6 +41,20 @@ namespace ConsoleProject.Scene
             }
         }
 
+        public int SpawnCount
+        {
+            get 
+            {
+                if (Player.level % 3 == 0)
+                {
+                    _spawnCount--;
+                    _spawnCount = Utility.MyUtility.Clamp(_spawnCount, 4, 10);
+                }
+
+                return _spawnCount; 
+            }
+        }
+
         // 나와 적
         public int[,] map = new int[Console.WindowHeight, Console.WindowWidth];
 
@@ -53,11 +71,26 @@ namespace ConsoleProject.Scene
 
         public override void End()
         {
+            Console.Clear();
 
+            for (int i = 0; i < Console.WindowHeight; i++)
+            {
+                for (int j = 0; j < Console.WindowWidth; j++)
+                {
+                    Console.Write(' ');
+                }
+                Console.WriteLine();
+            }
+
+            enemies.Clear();
         }
 
         public override void Start()
         {
+            enemiesCount = 0;
+
+            _spawnCount = 10;
+
             _count = 1;
 
             _startTime = DateTime.Now;
@@ -77,7 +110,7 @@ namespace ConsoleProject.Scene
         {
             _count++;
 
-            CheckLevelUp(ref _count);
+            // CheckLevelUp(ref _count);
 
             // map초기화
             map = new int[Console.WindowHeight, Console.WindowWidth];
@@ -98,13 +131,6 @@ namespace ConsoleProject.Scene
 
             _player.HitCheck();
 
-            /*            // 엔딩씬 체인지
-                        // 죽음 확인
-                        if (_player.isDead)
-                        {
-                            break;
-                        }*/
-
             // 죽은 적이 있다면 enemies list 정리
             List<Enemy> temp = new List<Enemy>();
             foreach (Enemy enemy in enemies)
@@ -122,7 +148,7 @@ namespace ConsoleProject.Scene
 
         private void ShowUI()
         {
-            TimeSpan time = DateTime.Now - _startTime;
+            time = DateTime.Now - _startTime;
             string playerInfoText = $" HP({ _player.CurrentHp}/{ _player.maxHp})  {time.ToString(@"hh\:mm\:ss"),50}                                            Level : {_player.level}";
 
             // Hp Bar   
@@ -168,7 +194,7 @@ namespace ConsoleProject.Scene
 
         private void SpawnEnemy(int count)
         {
-            if (count % 10 == 0)
+            if (count % SpawnCount == 0)
             {
                 int randomPosX = random.Next(Console.WindowWidth);
                 int randomPosY = random.Next(Console.WindowHeight);
@@ -177,19 +203,14 @@ namespace ConsoleProject.Scene
             }
         }
 
-        private void CheckLevelUp(ref int count)
+        public void LevelUp()
         {
-            //if(count == 300)
-            if (count == 300)
-            {
-                count = 0;
-                _player.LevelUp();
+            _player.LevelUp();
 
-                // 스킬 선택 창 보여줌(무한반복)  =>  선택하면 return해서 나올 수 있음
-                abilityManager.ShowLevelUpUI();
+            // 스킬 선택 창 보여줌(무한반복)  =>  선택하면 return해서 나올 수 있음
+            abilityManager.ShowLevelUpUI();
 
-                InitmapData();
-            }
+            InitmapData();
         }
 
         private void InitmapData()

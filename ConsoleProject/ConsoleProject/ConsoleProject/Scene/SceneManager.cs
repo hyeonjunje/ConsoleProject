@@ -42,6 +42,7 @@ namespace ConsoleProject.Scene
             _sceneDictionary[EScene.Main] = new MainScene();
             _sceneDictionary[EScene.Info] = new InfoScene();
             _sceneDictionary[EScene.Credit] = new CreditScene();
+            _sceneDictionary[EScene.Ending] = new EndingScene();
         }
 
         public void ChangeScene(EScene scene)

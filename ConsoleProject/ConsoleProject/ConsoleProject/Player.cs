@@ -14,6 +14,35 @@ namespace ConsoleProject
         public int level;
         public bool isRight = true;
 
+        private int _currentExp;
+        public int CurrentExp
+        {
+            get { return _currentExp; }
+            set
+            {
+                _currentExp = value;
+
+                Console.SetCursorPosition(0, 1);
+
+                Console.BackgroundColor = ConsoleColor.DarkGreen;
+                for (int i = 0; i < Console.WindowWidth; i++)
+                {
+                    Console.Write(' ');
+                }
+
+                Console.SetCursorPosition(0, 1);
+                Console.Write($"다음 레벨까지 앞으로 {level * 10 - CurrentExp} 마리");
+                Console.ResetColor();
+
+                if (_currentExp >= level * 10)
+                {
+                    ((Scene.MainScene)Scene.SceneManager.Instance.GetScene(Scene.EScene.Main)).LevelUp();
+                    _currentExp = 0;
+                }
+            }
+        }
+
+
         public List<ActiveSkill> activeSkill = new List<ActiveSkill>();
 
         public Player()
@@ -29,6 +58,8 @@ namespace ConsoleProject
             _entityColor = ConsoleColor.Black;
 
             CurrentHp = maxHp;
+
+            CurrentExp = 0;
         }
 
         [DllImport("user32.dll")]
@@ -72,7 +103,8 @@ namespace ConsoleProject
 
         public override void Dead()
         {
-            
+            // 죽으면 엔딩씬으로 넘어감
+            Scene.SceneManager.Instance.ChangeScene(Scene.EScene.Ending);
         }
 
         public void AddSkill(Skill skill)

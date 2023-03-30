@@ -35,7 +35,7 @@ namespace ConsoleProject
             set
             {
                 _posY = value;
-                _posY = Utility.MyUtility.Clamp(_posY, 1, Console.WindowHeight - 1);
+                _posY = Utility.MyUtility.Clamp(_posY, Utility.MyUtility.ConsoleYMin, Console.WindowHeight - 1);
             }
         }
 

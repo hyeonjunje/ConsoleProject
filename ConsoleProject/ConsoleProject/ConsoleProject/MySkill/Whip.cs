@@ -37,7 +37,7 @@ namespace ConsoleProject.MySkill
             {
                 for(int j = offsetY + 1; j < offsetY + rangeY; j++)
                 {
-                    if (map.GetLength(1) <= i || i < 1 || map.GetLength(0) <= j || j < 1)
+                    if (map.GetLength(1) <= i || i < 0 || map.GetLength(0) <= j || j < 1)
                         continue;
 
                     range.Add(new Utility.Pair<int, int>(i, j));
@@ -45,7 +45,7 @@ namespace ConsoleProject.MySkill
 
                 for(int j = offsetY - 1; j > offsetY - rangeY; j--)
                 {
-                    if (map.GetLength(1) <= i || i < 1 || map.GetLength(0) <= j || j < 1)
+                    if (map.GetLength(1) <= i || i < 0 || map.GetLength(0) <= j || j < 1)
                         continue;
 
                     range.Add(new Utility.Pair<int, int>(i, j));

@@ -34,7 +34,7 @@ namespace ConsoleProject.MySkill
             {
                 for (int j = offsetX - width; j <= offsetX + width; j++)
                 {
-                    if (map.GetLength(1) <= j || j < 1 || map.GetLength(0) <= i || i < 1)
+                    if (map.GetLength(1) <= j || j < 0 || map.GetLength(0) <= i || i < Utility.MyUtility.ConsoleYMin)
                         continue;
 
                     range.Add(new Utility.Pair<int, int>(j, i));

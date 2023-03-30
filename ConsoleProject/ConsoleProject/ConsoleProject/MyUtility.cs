@@ -8,6 +8,8 @@ namespace Utility
 {
     public static class MyUtility
     {
+        public const int ConsoleYMin = 2;
+
         public static int Clamp(int value, int min, int max)
         {
             if (value <= min)
