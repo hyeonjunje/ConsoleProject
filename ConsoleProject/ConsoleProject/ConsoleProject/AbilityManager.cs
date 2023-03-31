@@ -47,6 +47,7 @@ namespace ConsoleProject
             allSkills.Add(new Speed('》', "이속증가", 2, ConsoleColor.Green));
             allSkills.Add(new ExpAdder('△', "exp량 증가", 2, ConsoleColor.Green));
             allSkills.Add(new Cross('†', "십자가", 5, ConsoleColor.Yellow, 5, 20, 1));
+            allSkills.Add(new Lightning('/', "번개", 5, ConsoleColor.DarkYellow, 10, 20, 5));
         }
 
         public void InitAbility()
@@ -211,7 +212,7 @@ namespace ConsoleProject
             Console.Write('▲');
 
             // 스킬 설명창
-            for (int i = Console.WindowWidth / 2 + 22; i < Console.WindowWidth - 10; i++)
+            for (int i = Console.WindowWidth / 2 + 22; i < Console.WindowWidth - 6; i++)
             {
                 Console.SetCursorPosition(i, Console.WindowHeight / 2 - 5);
                 Console.Write(' ');

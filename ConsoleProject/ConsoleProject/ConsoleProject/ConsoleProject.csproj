@@ -49,6 +49,7 @@
     <Compile Include="GameManager.cs" />
     <Compile Include="MySkill\Cross.cs" />
     <Compile Include="MySkill\ExpAdder.cs" />
+    <Compile Include="MySkill\Lightning.cs" />
     <Compile Include="MySkill\Rest.cs" />
     <Compile Include="MySkill\HolyWater.cs" />
     <Compile Include="MySkill\Fireball.cs" />
