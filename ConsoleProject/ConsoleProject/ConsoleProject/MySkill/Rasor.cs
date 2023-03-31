@@ -18,6 +18,7 @@ namespace ConsoleProject.MySkill
         public override void LevelUp()
         {
             width++;
+            damage += 1;
         }
 
         public override void SetRange()

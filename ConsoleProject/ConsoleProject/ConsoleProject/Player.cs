@@ -126,7 +126,7 @@ namespace ConsoleProject
         }
 
         // 스킬 추가
-        public void AddSkill(ActiveSkill skill)
+        private void AddSkill(ActiveSkill skill)
         {
             skill.level++;
             // 만약 있는 스킬이라면
@@ -141,7 +141,7 @@ namespace ConsoleProject
             }
         }
 
-        public void AddSkill(ItemSkill skill)
+        private void AddSkill(ItemSkill skill)
         {
             skill.Use();
         }

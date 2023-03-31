@@ -47,9 +47,10 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="MySkill\Cross.cs" />
     <Compile Include="MySkill\ExpAdder.cs" />
     <Compile Include="MySkill\Rest.cs" />
-    <Compile Include="MySkill\Electronic.cs" />
+    <Compile Include="MySkill\HolyWater.cs" />
     <Compile Include="MySkill\Fireball.cs" />
     <Compile Include="MySkill\Galic.cs" />
     <Compile Include="MySkill\ItemSkill.cs" />

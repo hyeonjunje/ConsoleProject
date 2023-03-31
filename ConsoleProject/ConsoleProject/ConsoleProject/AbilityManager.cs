@@ -38,17 +38,19 @@ namespace ConsoleProject
             allSkills = new List<Skill>();
 
             allSkills.Add(new Whip('∫', "채찍", 5, ConsoleColor.Magenta,  5, 20, 20));
-            allSkills.Add(new Rasor('=', "레이저", 5, ConsoleColor.Blue, 2, 50, 20));
+            allSkills.Add(new Rasor('=', "레이저", 5, ConsoleColor.DarkBlue, 2, 50, 20));
             allSkills.Add(new Fireball('@', "파이어볼", 5, ConsoleColor.DarkRed, 3, 30, 100));
-            allSkills.Add(new Electronic('/', "번개!", 5, ConsoleColor.Yellow, 1, 20, 100));
+            allSkills.Add(new HolyWater('#', "성수", 5, ConsoleColor.Blue, 1, 20, 100));
             allSkills.Add(new Rest('♨', "휴식~", 99, ConsoleColor.Cyan));
             allSkills.Add(new Speed('》', "이속증가", 2, ConsoleColor.Green));
             allSkills.Add(new ExpAdder('△', "exp량 증가", 2, ConsoleColor.Green));
+            allSkills.Add(new Cross('†', "십자가", 5, ConsoleColor.Yellow, 5, 20, 1));
         }
 
         public void InitAbility()
         {
-            GameManager.Instance.Player.AddSkill(allSkills[0]);
+            //GameManager.Instance.Player.AddSkill(allSkills[0]);
+            GameManager.Instance.Player.AddSkill(allSkills[allSkills.Count - 1]);
         }
 
         public void ShowLevelUpUI()

@@ -129,7 +129,8 @@ namespace ConsoleProject.Scene
             // 적 이동, 공격, 피격
             foreach (Enemy enemy in enemies)
             {
-                enemy.Update(_count);
+                if(!enemy.isDead)
+                    enemy.Update(_count);
             }
 
             _player.HitCheck();
@@ -202,14 +203,14 @@ namespace ConsoleProject.Scene
             {
                 for(int i = Utility.MyUtility.ConsoleYMin; i < Console.WindowHeight; i+=3)
                 {
-                    enemies.Add(new Enemy(0, i, 10));
-                    enemies.Add(new Enemy(Console.WindowWidth - 1, i, 10));
+                    enemies.Add(new Enemy(0, i, 5 + _player.level));
+                    enemies.Add(new Enemy(Console.WindowWidth - 1, i, 5 + _player.level));
                 }
 
                 for (int i = 1; i < Console.WindowWidth; i+=3)
                 {
-                    enemies.Add(new Enemy(i, Utility.MyUtility.ConsoleYMin, 10));
-                    enemies.Add(new Enemy(i, Console.WindowHeight, 10));
+                    enemies.Add(new Enemy(i, Utility.MyUtility.ConsoleYMin, 5 + _player.level));
+                    enemies.Add(new Enemy(i, Console.WindowHeight, 5 + _player.level));
                 }
 
                 _isEnemyEvent = true;
@@ -225,7 +226,12 @@ namespace ConsoleProject.Scene
                 int randomPosX = random.Next(Console.WindowWidth);
                 int randomPosY = random.Next(Console.WindowHeight);
 
-                enemies.Add(new Enemy(randomPosX, randomPosY, 10));
+                enemies.Add(new Enemy(randomPosX, randomPosY, 5 + _player.level));
+
+                if(random.Next(10) != 0 && _player.level >= 5)
+                {
+                    enemies.Add(new Enemy(randomPosX, randomPosY, 5 + _player.level, 0));
+                }
             }
         }
 

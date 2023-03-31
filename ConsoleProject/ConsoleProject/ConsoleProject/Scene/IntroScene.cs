@@ -46,7 +46,7 @@ namespace ConsoleProject.Scene
             Console.WriteLine("Start");
             Console.SetCursorPosition(Console.WindowWidth / 2 - 5, Console.WindowHeight / 2 + 2);
             Console.WriteLine("Info");
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 5, Console.WindowHeight / 2  + 4);
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 5, Console.WindowHeight / 2 + 4);
             Console.WriteLine("Credit");
             Console.SetCursorPosition(Console.WindowWidth / 2 - 5, Console.WindowHeight / 2 + 6);
             Console.WriteLine("Exit");

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ConsoleProject.MySkill
 {
-    class Electronic : MeleeAttackSkill
+    class HolyWater : MeleeAttackSkill
     {
         int width = 3;
 
-        public Electronic(char shape, string name, int maxLevel, ConsoleColor entityColor, int damage, int skillCount, int skillDuration) : base(shape, name, maxLevel, entityColor, damage, skillCount, skillDuration)
+        public HolyWater(char shape, string name, int maxLevel, ConsoleColor entityColor, int damage, int skillCount, int skillDuration) : base(shape, name, maxLevel, entityColor, damage, skillCount, skillDuration)
         {
             width = 3;
         }
@@ -18,6 +18,7 @@ namespace ConsoleProject.MySkill
         public override void LevelUp()
         {
             width++;
+            damage += 1;
         }
 
         public override void SetRange()

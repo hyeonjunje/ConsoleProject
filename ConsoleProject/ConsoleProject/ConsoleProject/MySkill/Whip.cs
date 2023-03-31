@@ -24,6 +24,7 @@ namespace ConsoleProject.MySkill
                 rangeX++;
             }
             rangeY++;
+            damage += 1;
         }
 
         public override void SetRange()

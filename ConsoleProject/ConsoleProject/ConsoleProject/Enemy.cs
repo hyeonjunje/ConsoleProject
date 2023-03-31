@@ -10,8 +10,12 @@ namespace ConsoleProject
     {
         private int _moveCount = 0;
 
-        public Enemy(int x, int y, int maxHp)
+        private int _count = 1;
+
+        public Enemy(int x, int y, int maxHp, int count = 1)
         {
+            _count = count;
+
             PosX = x;
             PosY = y;
 
@@ -29,7 +33,7 @@ namespace ConsoleProject
 
         protected override void Move()
         {
-            if (_moveCount >= 1)
+            if (_count != 0 && _moveCount > _count)
             {
                 _moveCount = 0;
                 return;
@@ -73,8 +77,8 @@ namespace ConsoleProject
 
         public override void Dead()
         {
-            GameManager.Instance.Player.CurrentExp += 20;
-            //GameManager.Instance.Player.CurrentExp += GameManager.Instance.Player.expAmount;
+            //GameManager.Instance.Player.CurrentExp += 20;
+            GameManager.Instance.Player.CurrentExp += GameManager.Instance.Player.expAmount;
 
             ((Scene.MainScene)Scene.SceneManager.Instance.GetScene(Scene.EScene.Main)).enemiesCount++;
 
