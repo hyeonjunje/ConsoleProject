@@ -28,7 +28,7 @@ namespace ConsoleProject
                 Console.SetCursorPosition(0, 1);
 
                 Console.BackgroundColor = ConsoleColor.DarkGreen;
-                for (int i = 0; i < Console.WindowWidth; i++)
+                for (int i = 0; i < GameManager.ConsoleSizeWidth; i++)
                 {
                     Console.Write(' ');
                 }
@@ -56,8 +56,8 @@ namespace ConsoleProject
             moveSpeed = 1;
             expAmount = 1;
 
-            PosX = Console.WindowWidth / 2;
-            PosY = Console.WindowHeight / 2;
+            PosX = GameManager.ConsoleSizeWidth / 2;
+            PosY = GameManager.ConsoleSizeHeight / 2;
 
             _entity = '■';
             _unit = EUnit.Player;

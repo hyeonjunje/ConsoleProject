@@ -31,6 +31,7 @@ namespace ConsoleProject.Scene
             _sceneDictionary[EScene.Ending] = new EndingScene();
         }
 
+        // 씬을 바꾸면 이전 씬 End()함수 하고 씬을 바꾸고 바꾼 Scene에 start()함수를 실행
         public void ChangeScene(EScene scene)
         {
             // 키값이 없으면 return
@@ -48,11 +49,13 @@ namespace ConsoleProject.Scene
             // 이전 씬이 null이 아닐때만 이전 씬의 End() 실행
             if (CurrentScene != null)
             {
+                // End 함수는 씬 초기화 작업
                 CurrentScene.End();
             }
 
             CurrentScene = _sceneDictionary[scene];
 
+            // start 함수는 씬은 각 씬의 화면을 그려줌
             CurrentScene.Start();
         }
 

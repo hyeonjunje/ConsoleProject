@@ -18,9 +18,9 @@ namespace ConsoleProject.Scene
         {
             Console.Clear();
 
-            for (int i = 0; i < Console.WindowHeight; i++)
+            for (int i = 0; i < GameManager.ConsoleSizeHeight; i++)
             {
-                for (int j = 0; j < Console.WindowWidth; j++)
+                for (int j = 0; j < GameManager.ConsoleSizeWidth; j++)
                 {
                     Console.Write(' ');
                 }
@@ -36,10 +36,10 @@ namespace ConsoleProject.Scene
                 Console.Write(_creditString[i]);
             }
 
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 5, Console.WindowHeight / 2 + 6);
+            Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 - 5, GameManager.ConsoleSizeHeight / 2 + 6);
             Console.WriteLine("돌아가기");
 
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 7, Console.WindowHeight / 2 + 6);
+            Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 - 7, GameManager.ConsoleSizeHeight / 2 + 6);
             Console.Write('▶');
         }
 

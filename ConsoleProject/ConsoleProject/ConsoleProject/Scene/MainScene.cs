@@ -58,13 +58,13 @@ namespace ConsoleProject.Scene
         }
 
         // 나와 적
-        public int[,] map = new int[Console.WindowHeight, Console.WindowWidth];
+        public int[,] map = new int[GameManager.ConsoleSizeHeight, GameManager.ConsoleSizeWidth];
 
         // 스킬 데미지
-        public int[,] attackMap = new int[Console.WindowHeight, Console.WindowWidth];
+        public int[,] attackMap = new int[GameManager.ConsoleSizeHeight, GameManager.ConsoleSizeWidth];
 
         // 스킬 문자
-        public char[,] charMap = new char[Console.WindowHeight, Console.WindowWidth];
+        public char[,] charMap = new char[GameManager.ConsoleSizeHeight, GameManager.ConsoleSizeWidth];
 
         private AbilityManager abilityManager;
 
@@ -75,9 +75,9 @@ namespace ConsoleProject.Scene
         {
             Console.Clear();
 
-            for (int i = 0; i < Console.WindowHeight; i++)
+            for (int i = 0; i < GameManager.ConsoleSizeHeight; i++)
             {
-                for (int j = 0; j < Console.WindowWidth; j++)
+                for (int j = 0; j < GameManager.ConsoleSizeWidth; j++)
                 {
                     Console.Write(' ');
                 }
@@ -116,7 +116,7 @@ namespace ConsoleProject.Scene
             // CheckLevelUp(ref _count);
 
             // map초기화
-            map = new int[Console.WindowHeight, Console.WindowWidth];
+            map = new int[GameManager.ConsoleSizeHeight, GameManager.ConsoleSizeWidth];
 
             ShowUI();
 
@@ -163,9 +163,9 @@ namespace ConsoleProject.Scene
 
             // Hp Bar   
             Console.SetCursorPosition(0, 0);
-            for (int i = 0; i < Console.WindowWidth; i++)
+            for (int i = 0; i < GameManager.ConsoleSizeWidth; i++)
             {
-                if (i <= Console.WindowWidth * _player.CurrentHp / _player.maxHp)
+                if (i <= GameManager.ConsoleSizeWidth * _player.CurrentHp / _player.maxHp)
                 {
                     Console.BackgroundColor = ConsoleColor.DarkRed;
                 }
@@ -189,12 +189,11 @@ namespace ConsoleProject.Scene
         private void ShowBackground()
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
-            for (int i = 0; i < Console.WindowHeight; i++)
+            for (int i = 0; i < GameManager.ConsoleSizeHeight; i++)
             {
-                for (int j = 0; j < Console.WindowWidth; j++)
+                for (int j = 0; j < GameManager.ConsoleSizeWidth; j++)
                 {
-                    if (_player.PosX != j && _player.PosY != i)
-                        Console.WriteLine(' ');
+                    Console.Write(' ');
                     charMap[i, j] = ' ';
                 }
                 Console.WriteLine();
@@ -207,16 +206,16 @@ namespace ConsoleProject.Scene
             // 1분마다 사방에서 몬스터 덮쳐오기
             if (time.ToString(@"\:ss") == ":59" && !_isEnemyEvent)
             {
-                for(int i = Utility.MyUtility.ConsoleYMin; i < Console.WindowHeight; i+=3)
+                for(int i = Utility.MyUtility.ConsoleYMin; i < GameManager.ConsoleSizeHeight; i+=3)
                 {
                     enemies.Add(new Enemy(0, i, 5 + _player.level));
-                    enemies.Add(new Enemy(Console.WindowWidth - 1, i, 5 + _player.level));
+                    enemies.Add(new Enemy(GameManager.ConsoleSizeWidth - 1, i, 5 + _player.level));
                 }
 
-                for (int i = 1; i < Console.WindowWidth; i+=3)
+                for (int i = 1; i < GameManager.ConsoleSizeWidth; i+=3)
                 {
                     enemies.Add(new Enemy(i, Utility.MyUtility.ConsoleYMin, 5 + _player.level));
-                    enemies.Add(new Enemy(i, Console.WindowHeight, 5 + _player.level));
+                    enemies.Add(new Enemy(i, GameManager.ConsoleSizeHeight, 5 + _player.level));
                 }
 
                 _isEnemyEvent = true;
@@ -229,8 +228,8 @@ namespace ConsoleProject.Scene
 
             if (count % SpawnCount == 0)
             {
-                int randomPosX = random.Next(Console.WindowWidth);
-                int randomPosY = random.Next(Console.WindowHeight);
+                int randomPosX = random.Next(GameManager.ConsoleSizeWidth);
+                int randomPosY = random.Next(GameManager.ConsoleSizeHeight);
 
                 enemies.Add(new Enemy(randomPosX, randomPosY, 5 + _player.level));
 
@@ -253,9 +252,9 @@ namespace ConsoleProject.Scene
 
         private void InitmapData()
         {
-            map = new int[Console.WindowHeight, Console.WindowWidth];
-            attackMap = new int[Console.WindowHeight, Console.WindowWidth];
-            charMap = new char[Console.WindowHeight, Console.WindowWidth];
+            map = new int[GameManager.ConsoleSizeHeight, GameManager.ConsoleSizeWidth];
+            attackMap = new int[GameManager.ConsoleSizeHeight, GameManager.ConsoleSizeWidth];
+            charMap = new char[GameManager.ConsoleSizeHeight, GameManager.ConsoleSizeWidth];
 
             ShowBackground();
         }

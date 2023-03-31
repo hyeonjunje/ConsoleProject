@@ -29,8 +29,8 @@ namespace ConsoleProject.MySkill
 
             Random random = new Random();
 
-            int offsetY = random.Next(Console.WindowHeight - 1);
-            int offsetX = random.Next(Console.WindowWidth - 1);
+            int offsetY = random.Next(GameManager.ConsoleSizeHeight - 1);
+            int offsetX = random.Next(GameManager.ConsoleSizeWidth - 1);
             int[,] map = GameManager.Instance.map;
 
             for (int i = offsetY - width; i <= offsetY + width; i++)

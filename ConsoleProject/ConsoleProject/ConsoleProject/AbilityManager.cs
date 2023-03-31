@@ -60,9 +60,9 @@ namespace ConsoleProject
         {
             // 화면 보여줌
             Console.BackgroundColor = ConsoleColor.DarkCyan;
-            for (int i = 5; i < Console.WindowHeight - 5; i++)
+            for (int i = 5; i < GameManager.ConsoleSizeHeight - 5; i++)
             {
-                for (int j = 10; j < Console.WindowWidth - 4; j++)
+                for (int j = 10; j < GameManager.ConsoleSizeWidth - 4; j++)
                 {
                     Console.SetCursorPosition(j, i);
                     Console.Write(' ');
@@ -77,12 +77,12 @@ namespace ConsoleProject
 
             for(int i = 0; i < selectedSkills.Count; i++)
             {
-                ShowAbility(Console.WindowWidth / 2 - AbilityCardWidth / 2 + (PaddingX + AbilityCardWidth) * (i -  1), Console.WindowHeight / 2 - AbilityCardHeight / 2, i);
+                ShowAbility(GameManager.ConsoleSizeWidth / 2 - AbilityCardWidth / 2 + (PaddingX + AbilityCardWidth) * (i -  1), GameManager.ConsoleSizeHeight / 2 - AbilityCardHeight / 2, i);
             }
 
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 2, (Console.WindowHeight / 2) - (AbilityCardHeight / 2) - 6);
+            Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 - 2, (GameManager.ConsoleSizeHeight / 2) - (AbilityCardHeight / 2) - 6);
             Console.Write("레벨업!!!");
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 15, (Console.WindowHeight / 2) - (AbilityCardHeight / 2) - 5);
+            Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 - 15, (GameManager.ConsoleSizeHeight / 2) - (AbilityCardHeight / 2) - 5);
             Console.Write("A, D  :   선택,      SpaceBar   :    결정");
             while(true)
             {
@@ -124,7 +124,7 @@ namespace ConsoleProject
 
         private void ShowAbility(int cursorX, int cursorY, int index)
         {
-            cursorX += +AbilityCardOffsetX;
+            cursorX += AbilityCardOffsetX;
 
             Skill selectedSkill = selectedSkills[index];
 
@@ -187,14 +187,14 @@ namespace ConsoleProject
 
             if (cki.Key == ConsoleKey.A)
             {
-                Console.SetCursorPosition(Console.WindowWidth / 2 + (PaddingX + AbilityCardWidth) * (SelectedNumber - 1) + AbilityCardOffsetX, Console.WindowHeight / 2 + AbilityCardHeight / 2 + 2);
+                Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 + (PaddingX + AbilityCardWidth) * (SelectedNumber - 1) + AbilityCardOffsetX, GameManager.ConsoleSizeHeight / 2 + AbilityCardHeight / 2 + 2);
                 Console.Write(' ');
 
                 SelectedNumber--;
             }
             if (cki.Key == ConsoleKey.D)
             {
-                Console.SetCursorPosition(Console.WindowWidth / 2 + (PaddingX + AbilityCardWidth) * (SelectedNumber - 1) + AbilityCardOffsetX, Console.WindowHeight / 2 + AbilityCardHeight / 2 + 2);
+                Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 + (PaddingX + AbilityCardWidth) * (SelectedNumber - 1) + AbilityCardOffsetX, GameManager.ConsoleSizeHeight / 2 + AbilityCardHeight / 2 + 2);
                 Console.Write(' ');
 
                 SelectedNumber++;
@@ -208,26 +208,26 @@ namespace ConsoleProject
             }
 
 
-            Console.SetCursorPosition(Console.WindowWidth / 2 + (PaddingX + AbilityCardWidth) * (SelectedNumber - 1) + AbilityCardOffsetX, Console.WindowHeight / 2 + AbilityCardHeight / 2 + 2);
+            Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 + (PaddingX + AbilityCardWidth) * (SelectedNumber - 1) + AbilityCardOffsetX, GameManager.ConsoleSizeHeight / 2 + AbilityCardHeight / 2 + 2);
             Console.Write('▲');
 
             // 스킬 설명창
-            for (int i = Console.WindowWidth / 2 + 22; i < Console.WindowWidth - 6; i++)
+            for (int i = GameManager.ConsoleSizeWidth / 2 + 22; i < GameManager.ConsoleSizeWidth - 6; i++)
             {
-                Console.SetCursorPosition(i, Console.WindowHeight / 2 - 5);
+                Console.SetCursorPosition(i, GameManager.ConsoleSizeHeight / 2 - 5);
                 Console.Write(' ');
 
-                Console.SetCursorPosition(i, Console.WindowHeight / 2 - 4);
+                Console.SetCursorPosition(i, GameManager.ConsoleSizeHeight / 2 - 4);
                 Console.Write(' ');
             }    
 
 
-            Console.SetCursorPosition(Console.WindowWidth / 2 + 22, Console.WindowHeight / 2 - 5);
+            Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 + 22, GameManager.ConsoleSizeHeight / 2 - 5);
             Console.Write(selectedSkills[SelectedNumber].explanation);
 
             if(selectedSkills[SelectedNumber].level >= 1)
             {
-                Console.SetCursorPosition(Console.WindowWidth / 2 + 22, Console.WindowHeight / 2 - 4);
+                Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 + 22, GameManager.ConsoleSizeHeight / 2 - 4);
                 Console.Write(selectedSkills[SelectedNumber].levelUpexplanation);
             }
 

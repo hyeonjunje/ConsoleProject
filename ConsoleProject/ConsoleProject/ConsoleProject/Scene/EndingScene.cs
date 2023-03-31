@@ -12,9 +12,9 @@ namespace ConsoleProject.Scene
         {
             Console.Clear();
 
-            for (int i = 0; i < Console.WindowHeight; i++)
+            for (int i = 0; i < GameManager.ConsoleSizeHeight; i++)
             {
-                for (int j = 0; j < Console.WindowWidth; j++)
+                for (int j = 0; j < GameManager.ConsoleSizeWidth; j++)
                 {
                     Console.Write(' ');
                 }
@@ -24,17 +24,17 @@ namespace ConsoleProject.Scene
 
         public override void Start()
         {
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 11, Console.WindowHeight / 2 - 10);
+            Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 - 11, GameManager.ConsoleSizeHeight / 2 - 10);
             Console.Write("당신은 죽어버렸습니다.");
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 10, Console.WindowHeight / 2 - 9);
+            Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 - 10, GameManager.ConsoleSizeHeight / 2 - 9);
             Console.Write($"살아남은 시간 : {((Scene.MainScene)Scene.SceneManager.Instance.GetScene(Scene.EScene.Main)).enemiesCount}");
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 10, Console.WindowHeight / 2 - 8);
+            Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 - 10, GameManager.ConsoleSizeHeight / 2 - 8);
             Console.Write($"쓰러뜨린 적 : {((Scene.MainScene)Scene.SceneManager.Instance.GetScene(Scene.EScene.Main)).time.ToString(@"hh\:mm\:ss")}");
 
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 5, Console.WindowHeight / 2 + 6);
+            Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 - 5, GameManager.ConsoleSizeHeight / 2 + 6);
             Console.WriteLine("처음으로");
 
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 7, Console.WindowHeight / 2 + 6);
+            Console.SetCursorPosition(GameManager.ConsoleSizeWidth / 2 - 7, GameManager.ConsoleSizeHeight / 2 + 6);
             Console.Write('▶');
         }
 

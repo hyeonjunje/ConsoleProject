@@ -10,6 +10,8 @@ namespace ConsoleProject
     {
         static void Main(string[] args)
         {
+            // Console.WriteLine(Console.WindowHeight + "  " + Console.WindowWidth);
+            // Console.WriteLine(Console.BufferHeight + " " + Console.BufferWidth);
             GameManager.Instance.Start();
 
             GameManager.Instance.Update();

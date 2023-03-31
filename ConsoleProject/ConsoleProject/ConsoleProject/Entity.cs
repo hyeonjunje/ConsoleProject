@@ -26,7 +26,7 @@ namespace ConsoleProject
             set
             {
                 _posX = value;
-                _posX = Utility.MyUtility.Clamp(_posX, 0, Console.WindowWidth - 1);
+                _posX = Utility.MyUtility.Clamp(_posX, 0, GameManager.ConsoleSizeWidth - 1);
             }
         }
         public int PosY
@@ -35,7 +35,7 @@ namespace ConsoleProject
             set
             {
                 _posY = value;
-                _posY = Utility.MyUtility.Clamp(_posY, Utility.MyUtility.ConsoleYMin, Console.WindowHeight - 1);
+                _posY = Utility.MyUtility.Clamp(_posY, Utility.MyUtility.ConsoleYMin, GameManager.ConsoleSizeHeight - 1);
             }
         }
 
