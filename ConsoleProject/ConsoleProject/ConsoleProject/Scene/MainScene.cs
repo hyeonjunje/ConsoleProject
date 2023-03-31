@@ -137,13 +137,19 @@ namespace ConsoleProject.Scene
 
             // 죽은 적이 있다면 enemies list 정리
             List<Enemy> temp = new List<Enemy>();
-            foreach (Enemy enemy in enemies)
+
+            for(int i = 0; i < enemies.Count; i++)
             {
-                if (!enemy.isDead)
+                if (!enemies[i].isDead)
                 {
-                    temp.Add(enemy);
+                    temp.Add(enemies[i]);
+                }
+                else
+                {
+                    enemies[i] = null;
                 }
             }
+
             enemies = temp;
 
             // 30프레임
