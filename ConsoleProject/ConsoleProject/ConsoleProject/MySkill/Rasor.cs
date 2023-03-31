@@ -13,6 +13,8 @@ namespace ConsoleProject.MySkill
         public Rasor(char shape, string name, int maxLevel, ConsoleColor entityColor, int damage, int skillCount, int skillDuration) : base(shape, name, maxLevel, entityColor, damage, skillCount, skillDuration)
         {
             width = 0;
+            explanation = "전방으로 레이저를 쏩니다.";
+            levelUpexplanation = "범위, 데미지 상승";
         }
 
         public override void LevelUp()

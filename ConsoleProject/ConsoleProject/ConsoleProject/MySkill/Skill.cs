@@ -22,6 +22,9 @@ namespace ConsoleProject.MySkill
         public ConsoleColor entityColor;
         public ESkillType skillType = ESkillType.None;
 
+        public string explanation = "안녕?";
+        public string levelUpexplanation = "레벨이 오른다.";
+
         public Skill(char shape, string name, int maxLevel, ConsoleColor entityColor)
         {
             this.shape = shape;

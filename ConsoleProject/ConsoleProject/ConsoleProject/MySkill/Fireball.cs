@@ -10,7 +10,8 @@ namespace ConsoleProject.MySkill
     {
         public Fireball(char shape, string name, int maxLevel, ConsoleColor entityColor, int damage, int skillCount, int skillDuration) : base(shape, name, maxLevel, entityColor, damage, skillCount, skillDuration)
         {
-
+            explanation = "가장 가까운 적에게 불을 쏩니다.";
+            levelUpexplanation = "데미지 상승";
         }
 
         public override void LevelUp()

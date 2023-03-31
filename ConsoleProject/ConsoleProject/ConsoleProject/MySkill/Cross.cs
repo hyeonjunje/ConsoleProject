@@ -10,7 +10,8 @@ namespace ConsoleProject.MySkill
     {
         public Cross(char shape, string name, int maxLevel, ConsoleColor entityColor, int damage, int skillCount, int skillDuration) : base(shape, name, maxLevel, entityColor, damage, skillCount, skillDuration)
         {
-
+            explanation = "모든 적에게 피해를 줍니다.";
+            levelUpexplanation = "데미지 상승";
         }
 
         public override void LevelUp()

@@ -13,6 +13,8 @@ namespace ConsoleProject.MySkill
         public HolyWater(char shape, string name, int maxLevel, ConsoleColor entityColor, int damage, int skillCount, int skillDuration) : base(shape, name, maxLevel, entityColor, damage, skillCount, skillDuration)
         {
             width = 3;
+            explanation = "랜덤한 곳에 성수를 뿌립니다.";
+            levelUpexplanation = "범위, 데미지 상승";
         }
 
         public override void LevelUp()

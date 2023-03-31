@@ -14,6 +14,8 @@ namespace ConsoleProject
         private const int AbilityCardWidth = 15;
         private const int AbilityCardHeight = 12;
 
+        private const int AbilityCardOffsetX = -8;
+
         private const int PaddingX = 5;
 
         public List<Skill> allSkills;
@@ -59,7 +61,7 @@ namespace ConsoleProject
             Console.BackgroundColor = ConsoleColor.DarkCyan;
             for (int i = 5; i < Console.WindowHeight - 5; i++)
             {
-                for (int j = 10; j < Console.WindowWidth - 10; j++)
+                for (int j = 10; j < Console.WindowWidth - 4; j++)
                 {
                     Console.SetCursorPosition(j, i);
                     Console.Write(' ');
@@ -121,6 +123,8 @@ namespace ConsoleProject
 
         private void ShowAbility(int cursorX, int cursorY, int index)
         {
+            cursorX += +AbilityCardOffsetX;
+
             Skill selectedSkill = selectedSkills[index];
 
             Console.SetCursorPosition(cursorX, cursorY);
@@ -182,14 +186,14 @@ namespace ConsoleProject
 
             if (cki.Key == ConsoleKey.A)
             {
-                Console.SetCursorPosition(Console.WindowWidth / 2 + (PaddingX + AbilityCardWidth) * (SelectedNumber - 1), Console.WindowHeight / 2 + AbilityCardHeight / 2 + 2);
+                Console.SetCursorPosition(Console.WindowWidth / 2 + (PaddingX + AbilityCardWidth) * (SelectedNumber - 1) + AbilityCardOffsetX, Console.WindowHeight / 2 + AbilityCardHeight / 2 + 2);
                 Console.Write(' ');
 
                 SelectedNumber--;
             }
             if (cki.Key == ConsoleKey.D)
             {
-                Console.SetCursorPosition(Console.WindowWidth / 2 + (PaddingX + AbilityCardWidth) * (SelectedNumber - 1), Console.WindowHeight / 2 + AbilityCardHeight / 2 + 2);
+                Console.SetCursorPosition(Console.WindowWidth / 2 + (PaddingX + AbilityCardWidth) * (SelectedNumber - 1) + AbilityCardOffsetX, Console.WindowHeight / 2 + AbilityCardHeight / 2 + 2);
                 Console.Write(' ');
 
                 SelectedNumber++;
@@ -203,8 +207,30 @@ namespace ConsoleProject
             }
 
 
-            Console.SetCursorPosition(Console.WindowWidth / 2 + (PaddingX + AbilityCardWidth) * (SelectedNumber - 1), Console.WindowHeight / 2 + AbilityCardHeight / 2 + 2);
+            Console.SetCursorPosition(Console.WindowWidth / 2 + (PaddingX + AbilityCardWidth) * (SelectedNumber - 1) + AbilityCardOffsetX, Console.WindowHeight / 2 + AbilityCardHeight / 2 + 2);
             Console.Write('▲');
+
+            // 스킬 설명창
+            for (int i = Console.WindowWidth / 2 + 22; i < Console.WindowWidth - 10; i++)
+            {
+                Console.SetCursorPosition(i, Console.WindowHeight / 2 - 5);
+                Console.Write(' ');
+
+                Console.SetCursorPosition(i, Console.WindowHeight / 2 - 4);
+                Console.Write(' ');
+            }    
+
+
+            Console.SetCursorPosition(Console.WindowWidth / 2 + 22, Console.WindowHeight / 2 - 5);
+            Console.Write(selectedSkills[SelectedNumber].explanation);
+
+            if(selectedSkills[SelectedNumber].level >= 1)
+            {
+                Console.SetCursorPosition(Console.WindowWidth / 2 + 22, Console.WindowHeight / 2 - 4);
+                Console.Write(selectedSkills[SelectedNumber].levelUpexplanation);
+            }
+
+
 
             return true;
         }

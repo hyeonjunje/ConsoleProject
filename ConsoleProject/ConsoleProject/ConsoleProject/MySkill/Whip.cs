@@ -14,7 +14,10 @@ namespace ConsoleProject.MySkill
         public Whip(char shape, string name, int maxLevel, ConsoleColor entityColor, int damage, int skillCount, int skillDuration) : base(shape, name, maxLevel, entityColor, damage, skillCount, skillDuration)
         {
             rangeX = 1;
-            rangeY = 4;   
+            rangeY = 4;
+
+            explanation = "상하로 채찍을 휘두릅니다.";
+            levelUpexplanation = "범위, 데미지 상승";
         }
 
         public override void LevelUp()
